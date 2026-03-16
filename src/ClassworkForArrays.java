@@ -4,9 +4,9 @@ import java.util.Arrays;
  * @author annasavasteeva
  * @date 16.03.2026
  */
-class ClassWorkForArrays {
+class ClassworkForArrays {
 
-    void processClassWorkForArrays() {
+    void processClassworkForArrays() {
         System.out.println("---Classwork---");
         int randomIntsAmount = 5;
         int[] randomIntsArray = new int[randomIntsAmount];

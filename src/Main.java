@@ -4,6 +4,6 @@ public class Main {
 
 //        new HomeWork1().processHW1();
 //        new HomeWork2().processHW2();
-        new ClassWorkForArrays().processClassWorkForArrays();
+        new ClassworkForArrays().processClassworkForArrays();
     }
 }
