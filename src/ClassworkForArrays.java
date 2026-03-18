@@ -11,7 +11,7 @@ class ClassworkForArrays {
         int randomIntsAmount = 5;
         int[] randomIntsArray = new int[randomIntsAmount];
         for (int i = 0; i < randomIntsAmount; i++) {
-            randomIntsArray[i] = (int) (Math.random() * 101);
+            randomIntsArray[i] = UtilClass.getRandomInt();
         }
         System.out.printf("Array before squaring: %s%n", Arrays.toString(randomIntsArray));
         for (int i = 0; i < randomIntsAmount; i++) {
