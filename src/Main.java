@@ -7,10 +7,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-//        new HomeWork1().processHW1();
-//        new HomeWork2().processHW2();
-//        new ClassworkForArrays().processClassworkForArrays();
-
         System.out.print("Введите размер одномерного массива: ");
         int userInt = new Scanner(System.in).nextInt();
         int[] randomIntsArray = UtilClass.getRandomIntArray(userInt);
