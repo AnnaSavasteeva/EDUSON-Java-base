@@ -13,8 +13,8 @@ import static java.util.Arrays.stream;
  */
 public class OneDimensionalArrays {
 
-    private int arrayLength;
-    private int[] randomIntsArray;
+    private final int arrayLength;
+    private final int[] randomIntsArray;
 
     public OneDimensionalArrays() {
         System.out.print("Введите размер одномерного массива: ");
@@ -29,7 +29,7 @@ public class OneDimensionalArrays {
         processTaskFive();
         processTaskSix();
         processTaskWithTheStar();
-    };
+    }
 
     private void processTaskOne() {
         System.out.printf("---Задача 1---%n" +
@@ -119,9 +119,9 @@ public class OneDimensionalArrays {
         for (int arrEl : randomIntsArray) {
             sb.append(arrEl);
         }
-        int numFromArray = Integer.parseInt(sb.toString());
+        long numFromArray = Long.parseLong(sb.toString());
         System.out.printf("Число из массива: %d%n", numFromArray);
-        int newNumFromArray = numFromArray + 1;
+        long newNumFromArray = numFromArray + 1;
         System.out.printf("Новое число из массива: %d%n", newNumFromArray);
         String newNumFromArrayStr = String.valueOf(newNumFromArray);
         int[] newIntsArrayByForLoop = new int[newNumFromArrayStr.length()];
@@ -140,6 +140,7 @@ public class OneDimensionalArrays {
         boolean isArrayIncreasing = false;
         for (int i = 0; i < intArray.length - 1; i++) {
             isArrayIncreasing = intArray[i] < intArray[i + 1];
+            if (!isArrayIncreasing) break;
         }
         return isArrayIncreasing;
     }
