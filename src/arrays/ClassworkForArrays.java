@@ -1,15 +1,19 @@
+package arrays;
+
+import utils.ClassWithUtilsMethods;
+
 import java.util.Arrays;
 
 /**
  * @author annasavasteeva
  * @date 16.03.2026
  */
-class ClassworkForArrays {
+public class ClassworkForArrays {
 
-    void processClassworkForArrays() {
+    public void processClassworkForArrays() {
         System.out.println("---Classwork---");
         int randomIntsAmount = 5;
-        int[] randomIntsArray = UtilClass.getRandomIntArray(randomIntsAmount);
+        int[] randomIntsArray = ClassWithUtilsMethods.getRandomIntArray(randomIntsAmount);
         System.out.printf("Array before squaring: %s%n", Arrays.toString(randomIntsArray));
         for (int i = 0; i < randomIntsAmount; i++) {
             int arrayEl = randomIntsArray[i];

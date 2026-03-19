@@ -1,8 +1,10 @@
+package utils;
+
 /**
  * @author annasavasteeva
  * @date 18.03.2026
  */
-public final class UtilClass {
+public class ClassWithUtilsMethods {
 
     public static int[] getRandomIntArray(int arrayLength) {
         int[] randomIntsArray = new int[arrayLength];

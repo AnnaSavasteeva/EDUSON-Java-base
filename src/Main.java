@@ -1,3 +1,5 @@
+import utils.ClassWithUtilsMethods;
+
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -9,7 +11,7 @@ public class Main {
 
         System.out.print("Введите размер одномерного массива: ");
         int userInt = new Scanner(System.in).nextInt();
-        int[] randomIntsArray = UtilClass.getRandomIntArray(userInt);
+        int[] randomIntsArray = ClassWithUtilsMethods.getRandomIntArray(userInt);
         int arrayLength = randomIntsArray.length;
 
 
@@ -81,16 +83,16 @@ public class Main {
         }
 
 
-        System.out.printf("%n---Задача *---%n" +
-                "Имеется массив из неотрицательных чисел(любой).\n" +
-                "Представьте, что массив представляет целое число, например: массив {1,2,3} -> 123, {9,9,9} -> 999).\n" +
-                "Задача — добавить единицу к этому “числу” и на выходе получить исправленный массив.\n" +
-                "Массив не содержит нуля в начале, кроме самого числа 0.\n" +
-                "Примеры:\n" +
-                "Input: [1,4,0,5,6,3]\n" +
-                "Output: [1,4,0,5,6,4]\n" +
-                "Input: [9,9,9]\n" +
-                "Output: [1,0,0,0].%n");
+        System.out.printf("""
+                %n---Задача *---%nИмеется массив из неотрицательных чисел(любой).
+                Представьте, что массив представляет целое число, например: массив {1,2,3} -> 123, {9,9,9} -> 999).
+                Задача — добавить единицу к этому “числу” и на выходе получить исправленный массив.
+                Массив не содержит нуля в начале, кроме самого числа 0.
+                Примеры:
+                Input: [1,4,0,5,6,3]
+                Output: [1,4,0,5,6,4]
+                Input: [9,9,9]
+                Output: [1,0,0,0].%n""");
         StringBuilder sb = new StringBuilder();
         for (int arrEl : randomIntsArray) {
             sb.append(arrEl);
