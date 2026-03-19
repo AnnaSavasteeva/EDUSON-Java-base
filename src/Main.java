@@ -12,6 +12,7 @@ public class Main {
         int[] randomIntsArray = UtilClass.getRandomIntArray(userInt);
         int arrayLength = randomIntsArray.length;
 
+
         System.out.printf("---Задача 1---%n" +
                 "Пройти по массиву, вывести все элементы в прямом и в обратном порядке.%n");
         System.out.printf("Элементы массива: %s%n", Arrays.toString(randomIntsArray));
@@ -20,6 +21,7 @@ public class Main {
             String end = i == 0 ? "]\n" : ", ";
             System.out.print(randomIntsArray[i] + end);
         }
+
 
         System.out.printf("%n---Задача 2, способ 1---%n" +
                 "Найти минимальный-максимальный элементы и вывести в консоль.%n");
@@ -46,6 +48,7 @@ public class Main {
         System.out.printf("Индекс минимального элемента массива: %d. Минимальный элемент массива: %d%n", minIdx, randomIntsArray[minIdx]);
         System.out.printf("Индекс максимального элемента массива: %d. Максимальный элемент массива: %d%n", maxIdx, randomIntsArray[maxIdx]);
 
+
         System.out.printf("%n---Задача 4---%n" +
                 "Найти и вывести количество нулевых элементов. Если нулевых элементов нет - вывести сообщение, что их нет.%n");
         int counter = 0;
@@ -55,6 +58,7 @@ public class Main {
         String infoAboutZeroElements = (counter > 0) ? Integer.toString(counter) : "в массиве нет ни одного нулевого элемента";
         System.out.printf("Количество нулевых элементов: %s%n", infoAboutZeroElements);
 
+
         System.out.printf("%n---Задача 5---%n" +
                 "Пройти по массиву и поменять местами элементы: первый и последний, второй и предпоследний и т.д.%n");
         for (int i = 0; i < arrayLength / 2; i++) {
@@ -63,6 +67,7 @@ public class Main {
             randomIntsArray[arrayLength - 1 - i] = tmp;
         }
         System.out.printf("Измененный массив: %s%n", Arrays.toString(randomIntsArray));
+
 
         System.out.printf("%n---Задача 6---%n" +
                 "Проверить, является ли массив возрастающей последовательностью (каждое следующее число больше предыдущего).%n");
@@ -75,7 +80,36 @@ public class Main {
             System.out.printf("А теперь массив — возрастающая последовательность? %s%n", increasingSign2);
         }
 
-        System.out.printf("%3s", "a");
+
+        System.out.printf("%n---Задача *---%n" +
+                "Имеется массив из неотрицательных чисел(любой).\n" +
+                "Представьте, что массив представляет целое число, например: массив {1,2,3} -> 123, {9,9,9} -> 999).\n" +
+                "Задача — добавить единицу к этому “числу” и на выходе получить исправленный массив.\n" +
+                "Массив не содержит нуля в начале, кроме самого числа 0.\n" +
+                "Примеры:\n" +
+                "Input: [1,4,0,5,6,3]\n" +
+                "Output: [1,4,0,5,6,4]\n" +
+                "Input: [9,9,9]\n" +
+                "Output: [1,0,0,0].%n");
+        StringBuilder sb = new StringBuilder();
+        for (int arrEl : randomIntsArray) {
+            sb.append(arrEl);
+        }
+        int numFromArray = Integer.parseInt(sb.toString());
+        System.out.printf("Число из массива: %d%n", numFromArray);
+        int newNumFromArray = numFromArray + 1;
+        System.out.printf("Новое число из массива: %d%n", newNumFromArray);
+        String newNumFromArrayStr = String.valueOf(newNumFromArray);
+        int[] newIntsArrayByForLoop = new int[newNumFromArrayStr.length()];
+        for (int i = 0; i < newIntsArrayByForLoop.length; i++) {
+            newIntsArrayByForLoop[i] = Character.getNumericValue(newNumFromArrayStr.charAt(i));
+        }
+        System.out.printf("Новый массив через цикл for: %s%n", Arrays.toString(newIntsArrayByForLoop));
+        int[] newIntsArrayByStream = newNumFromArrayStr
+                .chars()
+                .map(Character::getNumericValue)
+                .toArray();
+        System.out.printf("Новый массив через Stream Api: %s%n", Arrays.toString(newIntsArrayByStream));
     }
 
     private static boolean isIntArrayIncreasing(int[] intArray) {
