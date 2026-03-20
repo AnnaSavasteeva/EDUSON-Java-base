@@ -116,6 +116,7 @@ public class MultidimensionalArrays {
         System.out.println("Массив змейкой:");
         for (int[] innerArray : integersSequence) {
             for (int anInt : innerArray) {
+//                для строк можно использовать %3s, например: System.out.printf("%3s", "a");
                 System.out.printf("%3d", anInt);
             }
             System.out.printf("%n");
