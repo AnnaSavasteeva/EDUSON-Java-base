@@ -42,5 +42,38 @@ public class Main {
             }
         }
         System.out.printf("Сумма всех элементов массива: %d%n", arrayIntsSum);
+
+
+        System.out.printf("""
+                %n---Задача 2---
+                Создать программу для раскраски шахматной доски с помощью цикла.
+                Создать двумерный массив String 8х8.
+                С помощью циклов задать элементам массива значения B(Black) или W(White).
+                При выводе результат работы программы должен быть следующим:
+                W B W B W B W B
+                B W B W B W B W
+                W B W B W B W B
+                B W B W B W B W
+                W B W B W B W B
+                B W B W B W B W
+                W B W B W B W B
+                B W B W B W B W%n""");
+        String[][] chessboard = new String[8][8];
+        String white = "W";
+        String black = "B";
+        for (int i = 0; i < chessboard.length; i++) {
+            String evenEl = (i % 2 == 0) ? white : black;
+            String oddEl = evenEl.equals(white) ? black : white;
+            for (int j = 0; j < chessboard[i].length; j++) {
+                chessboard[i][j] = (j % 2 == 0) ? evenEl : oddEl;
+            }
+        }
+        System.out.println("Шахматная доска:");
+        for (String[] chessField : chessboard) {
+            for (int j = 0; j < chessField.length; j++) {
+                String end = (j == chessField.length - 1) ? "%n" : " ";
+                System.out.printf(chessField[j] + end);
+            }
+        }
     }
 }
