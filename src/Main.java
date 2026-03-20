@@ -75,5 +75,33 @@ public class Main {
                 System.out.printf(chessField[j] + end);
             }
         }
+
+        System.out.printf("""
+                %n---Задача *---
+                Даны числа n и m. Создайте массив A[n][m] и заполните его змейкой.
+                Программа должна вывести полученный массив, отводя на вывод каждого числа ровно 3 символа.
+                Пример выходных данных:
+                  0  1  2  3
+                  7  6  5  4%n""");
+        System.out.print("Введите ширину массива: ");
+        int sequenceWidth = sc.nextInt();
+        System.out.print("Введите высоту массива: ");
+        int sequenceHeight = sc.nextInt();
+        int[][] integersSequence = new int[sequenceWidth][sequenceHeight];
+        int counter = 0;
+        for (int i = 0; i < integersSequence.length; i++) {
+            for (int j = 0; j < integersSequence[i].length; j++) {
+                if (i % 2 == 0) integersSequence[i][j] = counter;
+                else integersSequence[i][integersSequence[i].length - 1 - j] = counter;
+                counter++;
+            }
+        }
+        System.out.println("Массив змейкой:");
+        for (int[] innerArray : integersSequence) {
+            for (int anInt : innerArray) {
+                System.out.printf("%3d", anInt);
+            }
+            System.out.printf("%n");
+        }
     }
 }
