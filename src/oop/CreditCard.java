@@ -1,5 +1,7 @@
 package oop;
 
+import static java.lang.String.format;
+
 /**
  * @author annasavasteeva
  * @date 21.03.2026
@@ -15,6 +17,9 @@ public class CreditCard {
     }
 
     public void creditAccount(int creditSum) {
+        if (creditSum < 0) {
+            throw new IllegalArgumentException(format("Initial balance cannot be negative: %d", creditSum));
+        }
         this.accountBalance += creditSum;
         System.out.printf("Счет %s пополнен на сумму %d%n", getAccountNumberByMask(), creditSum);
     }
