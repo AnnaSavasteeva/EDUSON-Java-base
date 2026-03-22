@@ -20,9 +20,9 @@ public class CreditCard {
     }
 
     public void withdrawMoney(long withdrawalAmount) {
-        if (withdrawalAmount >= this.accountBalance) {
+        if (this.accountBalance >= withdrawalAmount) {
             this.accountBalance -= withdrawalAmount;
-            System.out.printf("Списана сумма %d со счета %s%n", withdrawalAmount, getAccountNumberByMask());
+            System.out.printf("Со счета %s списана сумма %d%n", getAccountNumberByMask(), withdrawalAmount);
         } else {
             System.out.printf("Баланс счета %s недостаточен для списания суммы %d%n", getAccountNumberByMask(), withdrawalAmount);
         }
