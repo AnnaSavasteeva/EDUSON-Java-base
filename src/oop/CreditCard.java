@@ -12,14 +12,14 @@ public class CreditCard {
     private int accountBalance;
 
     public CreditCard(String accountNumber, int accountBalance) {
+        if (accountBalance < 0) {
+            throw new IllegalArgumentException(format("Initial balance cannot be negative: %d", accountBalance));
+        }
         this.accountNumber = accountNumber;
         this.accountBalance = accountBalance;
     }
 
     public void creditAccount(int creditSum) {
-        if (creditSum < 0) {
-            throw new IllegalArgumentException(format("Initial balance cannot be negative: %d", creditSum));
-        }
         this.accountBalance += creditSum;
         System.out.printf("Счет %s пополнен на сумму %d%n", getAccountNumberByMask(), creditSum);
     }
