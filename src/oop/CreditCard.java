@@ -6,20 +6,20 @@ package oop;
  */
 public class CreditCard {
 
-    private String accountNumber;
-    private long accountBalance;
+    private final String accountNumber;
+    private int accountBalance;
 
-    public CreditCard(String accountNumber, long accountBalance) {
+    public CreditCard(String accountNumber, int accountBalance) {
         this.accountNumber = accountNumber;
         this.accountBalance = accountBalance;
     }
 
-    public void creditAccount(long creditSum) {
+    public void creditAccount(int creditSum) {
         this.accountBalance += creditSum;
         System.out.printf("Счет %s пополнен на сумму %d%n", getAccountNumberByMask(), creditSum);
     }
 
-    public void withdrawMoney(long withdrawalAmount) {
+    public void withdrawMoney(int withdrawalAmount) {
         if (this.accountBalance >= withdrawalAmount) {
             this.accountBalance -= withdrawalAmount;
             System.out.printf("Со счета %s списана сумма %d%n", getAccountNumberByMask(), withdrawalAmount);
