@@ -6,12 +6,12 @@ package oop.abstract_classes;
  */
 public abstract class GeometricFigure {
 
-    double figureArea;
-    double figurePerimeter;
+    protected double figureArea;
+    protected double figurePerimeter;
 
-    abstract void calculateArea();
+    public abstract double calculateArea();
 
-    abstract void calculatePerimeter();
+    public abstract double calculatePerimeter();
 
     public double getFigureArea() {
         return figureArea;
