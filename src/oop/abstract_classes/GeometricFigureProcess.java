@@ -8,7 +8,7 @@ import java.util.Scanner;
  */
 public class GeometricFigureProcess {
 
-    public void runAbstractClassHomework() {
+    public void runHomework() {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Укажите длины сторон треугольника:");
@@ -37,6 +37,9 @@ public class GeometricFigureProcess {
         GeometricFigure[] figures = {triangle, rectangle, square, circle, secondCircle};
         double allFiguresPerimetersSum = 0;
         for (GeometricFigure figure : figures) {
+            System.out.printf("-----%s-----%n", figure.getFigureName());
+            System.out.printf("Площадь: %.2f%n", figure.getFigureArea());
+            System.out.printf("Периметр: %.2f%n", figure.getFigurePerimeter());
             allFiguresPerimetersSum += figure.getFigurePerimeter();
         }
         System.out.printf("Сумма периметра всех фигур: %.2f%n", allFiguresPerimetersSum);
