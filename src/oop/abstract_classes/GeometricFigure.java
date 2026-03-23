@@ -6,12 +6,21 @@ package oop.abstract_classes;
  */
 public abstract class GeometricFigure {
 
+    private String figureName;
     private double figureArea;
     private double figurePerimeter;
 
     public abstract double calculateArea();
 
     public abstract double calculatePerimeter();
+
+    public String getFigureName() {
+        return figureName;
+    }
+
+    public void setFigureName(String figureName) {
+        this.figureName = figureName;
+    }
 
     public double getFigureArea() {
         return this.figureArea;

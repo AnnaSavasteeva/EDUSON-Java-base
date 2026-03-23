@@ -10,7 +10,8 @@ public class Triangle extends GeometricFigure {
     private double sideB;
     private double sideC;
 
-    public Triangle(double sideA, double sideB, double sideC) {
+    public Triangle(String figureName, double sideA, double sideB, double sideC) {
+        super.setFigureName(figureName);
         this.sideA = sideA;
         this.sideB = sideB;
         this.sideC = sideC;

@@ -15,24 +15,24 @@ public class GeometricFigureProcess {
         double a = sc.nextDouble();
         double b = sc.nextDouble();
         double c = sc.nextDouble();
-        GeometricFigure triangle = new Triangle(a, b, c);
+        GeometricFigure triangle = new Triangle("Треугольник", a, b, c);
 
         System.out.println("Укажите длину и ширину прямоугольника:");
         double length = sc.nextDouble();
         double width = sc.nextDouble();
-        GeometricFigure rectangle = new Rectangle(length, width);
+        GeometricFigure rectangle = new Rectangle("Прямоугольник", length, width);
 
         System.out.println("Укажите длину стороны квадрата:");
         double squareLength = sc.nextDouble();
-        GeometricFigure square = new Rectangle(squareLength, squareLength);
+        GeometricFigure square = new Rectangle("Квадрат", squareLength, squareLength);
 
         System.out.println("Укажите радиус круга:");
         double radius = sc.nextDouble();
-        GeometricFigure circle = new Circle(radius);
+        GeometricFigure circle = new Circle("Круг", radius);
 
         System.out.println("Укажите радиус второго круга:");
         double secondRadius = sc.nextDouble();
-        GeometricFigure secondCircle = new Circle(secondRadius);
+        GeometricFigure secondCircle = new Circle("Второй круг", secondRadius);
 
         GeometricFigure[] figures = {triangle, rectangle, square, circle, secondCircle};
         double allFiguresPerimetersSum = 0;

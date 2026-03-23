@@ -9,7 +9,8 @@ public class Rectangle extends GeometricFigure {
     private double length;
     private double width;
 
-    public Rectangle(double length, double width) {
+    public Rectangle(String figureName, double length, double width) {
+        super.setFigureName(figureName);
         this.length = length;
         this.width = width;
         super.setFigureArea(calculateArea());

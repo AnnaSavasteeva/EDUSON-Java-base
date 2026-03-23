@@ -8,7 +8,8 @@ public class Circle extends GeometricFigure {
 
     private double radius;
 
-    public Circle(double radius) {
+    public Circle(String figureName, double radius) {
+        super.setFigureName(figureName);
         this.radius = radius;
         super.setFigureArea(calculateArea());
         super.setFigurePerimeter(calculatePerimeter());
