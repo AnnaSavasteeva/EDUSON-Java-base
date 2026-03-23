@@ -14,14 +14,14 @@ public class Triangle extends GeometricFigure {
         this.sideA = sideA;
         this.sideB = sideB;
         this.sideC = sideC;
-        super.figureArea = calculateArea();
-        super.figurePerimeter = calculatePerimeter();
+        super.setFigureArea(calculateArea());
+        super.setFigurePerimeter(calculatePerimeter());
     }
 
     @Override
     public double calculateArea() {
 //        По формуле Герона
-        double semiperimeter = super.figurePerimeter / 2;
+        double semiperimeter = super.getFigurePerimeter() / 2;
         return Math.sqrt(semiperimeter * (semiperimeter - this.sideA) * (semiperimeter - this.sideB) *
                 (semiperimeter - this.sideC));
     }
@@ -29,16 +29,6 @@ public class Triangle extends GeometricFigure {
     @Override
     public double calculatePerimeter() {
         return sideA + sideB + sideC;
-    }
-
-    @Override
-    public double getFigureArea() {
-        return super.getFigureArea();
-    }
-
-    @Override
-    public double getFigurePerimeter() {
-        return super.getFigurePerimeter();
     }
 
     public double getSideA() {

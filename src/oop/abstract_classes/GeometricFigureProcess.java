@@ -35,7 +35,7 @@ public class GeometricFigureProcess {
         GeometricFigure secondCircle = new Circle(secondRadius);
 
         GeometricFigure[] figures = {triangle, rectangle, square, circle, secondCircle};
-        double allFiguresPerimetersSum =0;
+        double allFiguresPerimetersSum = 0;
         for (GeometricFigure figure : figures) {
             allFiguresPerimetersSum += figure.getFigurePerimeter();
         }

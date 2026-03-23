@@ -10,8 +10,8 @@ public class Circle extends GeometricFigure {
 
     public Circle(double radius) {
         this.radius = radius;
-        super.figureArea = calculateArea();
-        super.figurePerimeter = calculatePerimeter();
+        super.setFigureArea(calculateArea());
+        super.setFigurePerimeter(calculatePerimeter());
     }
 
     @Override
@@ -22,16 +22,6 @@ public class Circle extends GeometricFigure {
     @Override
     public double calculatePerimeter() {
         return 2 * Math.PI * radius;
-    }
-
-    @Override
-    public double getFigureArea() {
-        return super.getFigureArea();
-    }
-
-    @Override
-    public double getFigurePerimeter() {
-        return super.getFigurePerimeter();
     }
 
     public double getRadius() {
