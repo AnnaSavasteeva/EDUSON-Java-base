@@ -1,4 +1,5 @@
 import oop.abstract_classes.DoctorProcess;
+import oop.reflection.AppleProcess;
 
 public class Main {
 
@@ -8,5 +9,6 @@ public class Main {
 //        new HomeWork2().processHW2();
 
         new DoctorProcess().runHomework();
+        new AppleProcess().runHomework();
     }
 }
