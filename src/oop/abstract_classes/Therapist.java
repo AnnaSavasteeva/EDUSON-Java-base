@@ -7,7 +7,7 @@ package oop.abstract_classes;
 public class Therapist extends Doctor {
 
     public Therapist(String doctorName) {
-        super.setDoctorName(doctorName);
+        super(doctorName);
     }
 
     @Override
