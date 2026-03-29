@@ -12,6 +12,6 @@ public class Dentist extends Doctor {
 
     @Override
     public void treat() {
-        System.out.printf("Вас лечит %s", super.getDoctorName());
+        System.out.printf("%s удалил Вам зуб мудрости%n", super.getDoctorName());
     }
 }

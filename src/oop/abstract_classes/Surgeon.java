@@ -12,6 +12,6 @@ public class Surgeon extends Doctor {
 
     @Override
     public void treat() {
-        System.out.printf("Вас лечит %s", super.getDoctorName());
+        System.out.printf("%s сделал Вам операцию%n", super.getDoctorName());
     }
 }
