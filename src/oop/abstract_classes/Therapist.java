@@ -12,19 +12,16 @@ public class Therapist extends Doctor {
 
     @Override
     public void treat() {
-        System.out.printf("%s проводит скрининг Ваших анализов для назначения лечения", super.getDoctorName());
+        System.out.printf("%s проводит скрининг Ваших анализов для назначения лечения%n", super.getDoctorName());
     }
 
     public void prescribeTreatment(Patient patient) {
         if (patient.getTreatmentPlan() == 1) {
             patient.setDoctor(new Surgeon("ХИРУРГ"));
-            patient.getDoctor().treat();
         } else if (patient.getTreatmentPlan() == 2) {
             patient.setDoctor(new Dentist("ДАНТИСТ"));
-            patient.getDoctor().treat();
         } else {
             patient.setDoctor(this);
-            patient.getDoctor().treat();
         }
     }
 }
