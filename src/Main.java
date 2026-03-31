@@ -1,11 +1,9 @@
-import oop.abstract_classes.DoctorProcess;
-import oop.reflection.AppleProcess;
+import oop.abstract_classes.AnimalProcess;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        new DoctorProcess().runHomework();
-        new AppleProcess().runHomework();
+        new AnimalProcess().runHomework();
     }
 }
