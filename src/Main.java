@@ -1,9 +1,11 @@
-import oop.abstract_classes.GeometricFigureProcess;
+import oop.abstract_classes.DoctorProcess;
+import oop.reflection.AppleProcess;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        new GeometricFigureProcess().runHomework();
+        new DoctorProcess().runHomework();
+        new AppleProcess().runHomework();
     }
 }
