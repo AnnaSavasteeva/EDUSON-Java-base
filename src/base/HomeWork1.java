@@ -1,11 +1,13 @@
+package base;
+
 /**
  * @author annasavasteeva
  * @date 05.03.2026
  */
-class HomeWork1 {
+public class HomeWork1 {
 
     /** Метод для запуска задач из домашнего задания к уроку 1 */
-    void processHW1() {
+    public void processHW1() {
         /*
         Задача 1:
         Написать приложение, которое будет вычислять и выводить значение по формуле:

@@ -1,9 +1,14 @@
+import arrays.OneDimensionalArrays;
+import arrays.MultidimensionalArrays;
+import oop.CreditCardProcess;
+
 public class Main {
 
     public static void main(String[] args) {
 
-//        new HomeWork1().processHW1();
+//        new OneDimensionalArrays().processTasks();
+//        new MultidimensionalArrays().processTasks();
 
-        new HomeWork2().processHW2();
+        new CreditCardProcess().runCreditCardHomework();
     }
 }
