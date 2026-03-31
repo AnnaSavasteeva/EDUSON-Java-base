@@ -1,13 +1,15 @@
+package base;
+
 import java.util.Scanner;
 
 /**
  * @author annasavasteeva
  * @date 05.03.2026
  */
-class HomeWork2 {
+public class HomeWork2 {
 
     /** Метод для запуска задач из домашнего задания к уроку 2 */
-    void processHW2() {
+    public void processHW2() {
         /*
         Задача 1:
         Напишите программу, которая будет принимать на вход число из консоли и на выход будет выводить
