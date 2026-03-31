@@ -1,14 +1,9 @@
-import arrays.OneDimensionalArrays;
-import arrays.MultidimensionalArrays;
-import oop.CreditCardProcess;
+import oop.abstract_classes.GeometricFigureProcess;
 
 public class Main {
 
     public static void main(String[] args) {
 
-//        new OneDimensionalArrays().processTasks();
-//        new MultidimensionalArrays().processTasks();
-
-        new CreditCardProcess().runCreditCardHomework();
+        new GeometricFigureProcess().runHomework();
     }
 }
