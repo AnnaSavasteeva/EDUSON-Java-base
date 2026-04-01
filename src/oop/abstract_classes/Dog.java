@@ -6,7 +6,7 @@ package oop.abstract_classes;
  */
 public class Dog extends Animal {
 
-    public Dog(String animalName) {
+    private Dog(String animalName) {
         super(animalName);
     }
 
