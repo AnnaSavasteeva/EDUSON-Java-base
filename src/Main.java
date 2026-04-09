@@ -1,10 +1,4 @@
-import oop.abstract_classes.DoctorProcess;
-import oop.reflection.AppleProcess;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.stream.Collectors;
+import java.util.*;
 
 public class Main {
 
@@ -35,5 +29,30 @@ public class Main {
                 System.out.printf("`%s`. Длина — %d.%n", str, str.length());
             }
         }
+
+        System.out.println("---------");
+        String taskResult = null;
+        for(String str : userStringsArray) {
+            String[] words = str.split("\\s+");
+            for (String word : words) {
+                if (isWordWithUniqueLetters(word)) {
+                    taskResult = word;
+                    break;
+                }
+            }
+        }
+        if (taskResult == null) {taskResult = "слово не найдено";}
+        System.out.printf("Слово, состоящее из различных символов: %s%n", taskResult);
+    }
+
+    private static boolean isWordWithUniqueLetters(String word) {
+        Set<Character> letters = new HashSet<>();
+        for (char letter : word.toCharArray()) {
+            if (letters.contains(letter)) {
+                return false;
+            }
+            letters.add(letter);
+        }
+        return true;
     }
 }
