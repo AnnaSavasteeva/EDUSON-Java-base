@@ -1,8 +1,6 @@
 package base.strings;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * @author annasavasteeva
@@ -33,9 +31,40 @@ public class StringsOperations {
         processTaskTwo();
         System.out.println("------------------");
         processTaskThree();
+        System.out.println("------------------");
+        processTaskFour();
 
         System.out.println("------------------");
 //        sc.close();
+    }
+
+    private void processTaskFour() {
+        System.out.printf("""
+                -----Задача 4-----
+                Найти слово, состоящее только из различных символов. Если таких слов несколько, найти первое из них.%n---%n""");
+        String taskResult = null;
+        for(String str : userStringsArray) {
+            String[] words = str.split("\\s+");
+            for (String word : words) {
+                if (isWordWithUniqueLetters(word)) {
+                    taskResult = word;
+                    break;
+                }
+            }
+        }
+        if (taskResult == null) {taskResult = "такое слово не найдено";}
+        System.out.printf("Слово, состоящее из различных символов: %s%n", taskResult);
+    }
+
+    private static boolean isWordWithUniqueLetters(String word) {
+        Set<Character> letters = new HashSet<>();
+        for (char letter : word.toCharArray()) {
+            if (letters.contains(letter)) {
+                return false;
+            }
+            letters.add(letter);
+        }
+        return true;
     }
 
     private void processTaskThree() {
@@ -51,6 +80,16 @@ public class StringsOperations {
         }
     }
 
+    private void processTaskOne() {
+        System.out.printf("""
+                -----Задача 1-----
+                Найти самую короткую и самую длинную строки.
+                Вывести найденные строки и их длину.%n---%n""");
+        Arrays.sort(userStringsArray, Comparator.comparing(String::length));
+        System.out.printf("Самая короткая строка: `%s`. Ее длина — %d.%n", userStringsArray[0], userStringsArray[0].length());
+        System.out.printf("Самая длинная строка: `%s`. Ее длина — %d.%n", userStringsArray[2], userStringsArray[2].length());
+    }
+
     private void processTaskTwo() {
         System.out.printf("""
                 -----Задача 2-----
@@ -61,15 +100,5 @@ public class StringsOperations {
         for(String str : userStringsArray) {
             System.out.println(str);
         }
-    }
-
-    private void processTaskOne() {
-        System.out.printf("""
-                -----Задача 1-----
-                Найти самую короткую и самую длинную строки.
-                Вывести найденные строки и их длину.%n---%n""");
-        Arrays.sort(userStringsArray, Comparator.comparing(String::length));
-        System.out.printf("Самая короткая строка: `%s`. Ее длина — %d.%n", userStringsArray[0], userStringsArray[0].length());
-        System.out.printf("Самая длинная строка: `%s`. Ее длина — %d.%n", userStringsArray[2], userStringsArray[2].length());
     }
 }
