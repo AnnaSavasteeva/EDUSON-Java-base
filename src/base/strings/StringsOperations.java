@@ -31,9 +31,24 @@ public class StringsOperations {
         processTaskOne();
         System.out.println("------------------");
         processTaskTwo();
+        System.out.println("------------------");
+        processTaskThree();
 
         System.out.println("------------------");
 //        sc.close();
+    }
+
+    private void processTaskThree() {
+        System.out.printf("""
+                -----Задача 3-----
+                Вывести на консоль те строки, длина которых меньше средней, а также их длину.%n---%n""");
+        double strAverageLength = Arrays.stream(userStringsArray).mapToInt(String::length).average().orElse(0.0);
+        System.out.printf("Средняя длина строки: %f%n", strAverageLength);
+        for(String str : userStringsArray) {
+            if (str.length() < strAverageLength) {
+                System.out.printf("`%s`. Длина — %d.%n", str, str.length());
+            }
+        }
     }
 
     private void processTaskTwo() {
