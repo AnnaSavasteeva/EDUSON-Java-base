@@ -33,9 +33,37 @@ public class StringsOperations {
         processTaskThree();
         System.out.println("------------------");
         processTaskFour();
+        System.out.println("------------------");
+        processTaskFive();
 
         System.out.println("------------------");
 //        sc.close();
+    }
+
+    private void processTaskFive() {
+        System.out.printf("""
+                -----Задача 5-----
+                Вывести на консоль новую строку, в которой задублирована каждая буква из начальной строки.
+                Например, "Hello" -> "HHeelllloo".%n---%n""");
+        for(String str : userStringsArray) {
+            StringBuilder doubledStringViaArrays = new StringBuilder();
+            String[] words = str.split("\\s+");
+            for (String word : words) {
+                doubledStringViaArrays.append(getDoubleLettersWord(word));
+                doubledStringViaArrays.append(" ");
+            }
+            System.out.println(doubledStringViaArrays.toString().trim());
+        }
+    }
+
+    private String getDoubleLettersWord(String word) {
+        char[] wordLetters = word.toCharArray();
+        StringBuilder doubledLetters = new StringBuilder();
+        for (char wordLetter : wordLetters) {
+            doubledLetters.append(wordLetter);
+            doubledLetters.append(wordLetter);
+        }
+        return doubledLetters.toString();
     }
 
     private void processTaskFour() {
@@ -56,7 +84,7 @@ public class StringsOperations {
         System.out.printf("Слово, состоящее из различных символов: %s%n", taskResult);
     }
 
-    private static boolean isWordWithUniqueLetters(String word) {
+    private boolean isWordWithUniqueLetters(String word) {
         Set<Character> letters = new HashSet<>();
         for (char letter : word.toCharArray()) {
             if (letters.contains(letter)) {
