@@ -30,9 +30,22 @@ public class StringsOperations {
         System.out.printf("Ваши строки:%n %s%n", Arrays.deepToString(userStringsArray));
         processTaskOne();
         System.out.println("------------------");
+        processTaskTwo();
 
         System.out.println("------------------");
 //        sc.close();
+    }
+
+    private void processTaskTwo() {
+        System.out.printf("""
+                -----Задача 2-----
+                Упорядочить и вывести строки в порядке возрастания значений их длины.
+                NOTE: для решения задачи 1 массив строк был отсортирован по их длине, поэтому для решения 
+                данной задачи достаточно просто вывести в консоль ранее отсортированный массив.%n---%n""");
+        System.out.println("Строки в порядке возрастания значений их длины:");
+        for(String str : userStringsArray) {
+            System.out.println(str);
+        }
     }
 
     private void processTaskOne() {
