@@ -44,7 +44,7 @@ public class StringsOperations {
     private void processTaskWithStar() {
         System.out.printf("""
                 -----Задача со звездочкой-----
-                Дана строка произвольной длины с произвольными словами. 
+                Дана строка произвольной длины с произвольными словами.
                 Написать программу для проверки, является ли любое выбранное слово в строке палиндромом.%n---%n""");
         String randomWord1 = getRandomWordFromStrings(userStringsArray);
         printIsWordAPalindrome(randomWord1, isPalindromeViaStringBuilder(randomWord1));
@@ -168,7 +168,7 @@ public class StringsOperations {
         System.out.printf("""
                 -----Задача 2-----
                 Упорядочить и вывести строки в порядке возрастания значений их длины.
-                NOTE: для решения задачи 1 массив строк был отсортирован по их длине, поэтому для решения 
+                NOTE: для решения задачи 1 массив строк был отсортирован по их длине, поэтому для решения
                 данной задачи достаточно просто вывести в консоль ранее отсортированный массив.%n---%n""");
         System.out.println("Строки в порядке возрастания значений их длины:");
         for(String str : userStringsArray) {
