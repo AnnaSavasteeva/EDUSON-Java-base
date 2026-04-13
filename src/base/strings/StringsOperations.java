@@ -8,37 +8,33 @@ import java.util.*;
  */
 public class StringsOperations {
 
-//    private final Scanner sc;
-    private final String str1;
-    private final String str2;
-    private final String str3;
     private final String[] userStringsArray;
 
     public StringsOperations() {
-//        System.out.println("Введите 3 строки:");
-//        this.sc = new Scanner(System.in);
-        str1 = "My awesome string first";
-        str2 = "My awesome string second and it's middle";
-        str3 = "My awesome string third and it's final";
-        userStringsArray = new String[]{str1, str2, str3};
+        Scanner sc = new Scanner(System.in);
+        this.userStringsArray = getUserStringsArray(sc);
+        sc.close();
     }
 
     public void runHomework() {
         System.out.println("------------------");
-        System.out.printf("Ваши строки:%n %s%n", Arrays.deepToString(userStringsArray));
-        processTaskOne();
-        System.out.println("------------------");
-        processTaskTwo();
-        System.out.println("------------------");
-        processTaskThree();
-        System.out.println("------------------");
-        processTaskFour();
-        System.out.println("------------------");
-        processTaskFive();
-        System.out.println("------------------");
-        processTaskWithStar();
-        System.out.println("------------------");
-//        sc.close();
+        if (userStringsArray == null) {
+            System.out.println("Корректные строки не были введены");
+        } else {
+            System.out.printf("Ваши строки:%n %s%n", Arrays.deepToString(userStringsArray));
+            processTaskOne();
+            System.out.println("------------------");
+            processTaskTwo();
+            System.out.println("------------------");
+            processTaskThree();
+            System.out.println("------------------");
+            processTaskFour();
+            System.out.println("------------------");
+            processTaskFive();
+            System.out.println("------------------");
+            processTaskWithStar();
+            System.out.println("------------------");
+        }
     }
 
     private void processTaskWithStar() {
@@ -72,7 +68,6 @@ public class StringsOperations {
         }
         return true;
     }
-
     private boolean isPalindromeViaStringBuilder(String word) {
         if (word == null) return false;
         String reversed = new StringBuilder(word).reverse().toString();
@@ -154,16 +149,6 @@ public class StringsOperations {
         }
     }
 
-    private void processTaskOne() {
-        System.out.printf("""
-                -----Задача 1-----
-                Найти самую короткую и самую длинную строки.
-                Вывести найденные строки и их длину.%n---%n""");
-        Arrays.sort(userStringsArray, Comparator.comparing(String::length));
-        System.out.printf("Самая короткая строка: `%s`. Ее длина — %d.%n", userStringsArray[0], userStringsArray[0].length());
-        System.out.printf("Самая длинная строка: `%s`. Ее длина — %d.%n", userStringsArray[2], userStringsArray[2].length());
-    }
-
     private void processTaskTwo() {
         System.out.printf("""
                 -----Задача 2-----
@@ -174,5 +159,41 @@ public class StringsOperations {
         for(String str : userStringsArray) {
             System.out.println(str);
         }
+    }
+
+    private void processTaskOne() {
+        System.out.printf("""
+                -----Задача 1-----
+                Найти самую короткую и самую длинную строки.
+                Вывести найденные строки и их длину.%n---%n""");
+        Arrays.sort(userStringsArray, Comparator.comparing(String::length));
+        System.out.printf("Самая короткая строка: `%s`. Ее длина — %d.%n", userStringsArray[0], userStringsArray[0].length());
+        System.out.printf("Самая длинная строка: `%s`. Ее длина — %d.%n", userStringsArray[2], userStringsArray[2].length());
+    }
+
+    private String[] getUserStringsArray(Scanner sc) {
+        String[] userStringsArray = new String[3];
+        for (int i = 0; i < userStringsArray.length; i++) {
+            int attempts = 3;
+            while (attempts > 0) {
+                System.out.printf("Введите строку %d: ", i + 1);
+                String str = sc.nextLine();
+                if (isValidString(str)) {
+                    userStringsArray[i] = str;
+                    break;
+                } else {
+                    System.out.println("Вы ввели неверную строку: строка должна содержать только буквы и пробелы " +
+                            "и не может быть пустой или состоять только из пробелов.");
+                    System.out.printf("Ваша строка: `%s`%n", str);
+                    attempts--;
+                }
+            }
+            if (userStringsArray[i] == null) return null;
+        }
+        return userStringsArray;
+    }
+
+    private boolean isValidString(String str) {
+        return str != null && !str.trim().isEmpty() && str.matches("^[\\p{L}\\s]+$");
     }
 }
