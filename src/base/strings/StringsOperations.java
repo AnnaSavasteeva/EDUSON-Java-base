@@ -35,9 +35,55 @@ public class StringsOperations {
         processTaskFour();
         System.out.println("------------------");
         processTaskFive();
-
+        System.out.println("------------------");
+        processTaskWithStar();
         System.out.println("------------------");
 //        sc.close();
+    }
+
+    private void processTaskWithStar() {
+        System.out.printf("""
+                -----Задача со звездочкой-----
+                Дана строка произвольной длины с произвольными словами. 
+                Написать программу для проверки, является ли любое выбранное слово в строке палиндромом.%n---%n""");
+        String randomWord1 = getRandomWordFromStrings(userStringsArray);
+        printIsWordAPalindrome(randomWord1, isPalindromeViaStringBuilder(randomWord1));
+        String randomWord2 = getRandomWordFromStrings(userStringsArray);
+        printIsWordAPalindrome(randomWord2, isPalindromeViaLoop(randomWord2));
+    }
+
+    private void printIsWordAPalindrome(String word, boolean isWordPalindrome) {
+        String answer = isWordPalindrome ? "Да": "Нет";
+        System.out.printf("Слово `%s` — палиндром? %s.%n", word, answer);
+    }
+
+//    ИИ утверждает, что этот способ наиболее эффективный по памяти и времени
+    private boolean isPalindromeViaLoop(String word) {
+        if (word == null) return false;
+        word = word.toLowerCase();
+        int left = 0;
+        int right = word.length() - 1;
+        while (left < right) {
+            if (word.charAt(left) != word.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+
+    private boolean isPalindromeViaStringBuilder(String word) {
+        if (word == null) return false;
+        String reversed = new StringBuilder(word).reverse().toString();
+        return word.equalsIgnoreCase(reversed);
+    }
+
+    private String getRandomWordFromStrings(String[] stringsArray) {
+        Random random = new Random();
+        String randomStr = stringsArray[random.nextInt(stringsArray.length)];
+        String[] words = randomStr.split("\\s+");
+        return words[random.nextInt(words.length)];
     }
 
     private void processTaskFive() {
