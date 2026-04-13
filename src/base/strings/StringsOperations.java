@@ -68,6 +68,7 @@ public class StringsOperations {
         }
         return true;
     }
+
     private boolean isPalindromeViaStringBuilder(String word) {
         if (word == null) return false;
         String reversed = new StringBuilder(word).reverse().toString();
@@ -86,7 +87,7 @@ public class StringsOperations {
                 -----Задача 5-----
                 Вывести на консоль новую строку, в которой задублирована каждая буква из начальной строки.
                 Например, "Hello" -> "HHeelllloo".%n---%n""");
-        for(String str : userStringsArray) {
+        for (String str : userStringsArray) {
             StringBuilder doubledStringViaArrays = new StringBuilder();
             String[] words = str.split("\\s+");
             for (String word : words) {
@@ -112,7 +113,7 @@ public class StringsOperations {
                 -----Задача 4-----
                 Найти слово, состоящее только из различных символов. Если таких слов несколько, найти первое из них.%n---%n""");
         String taskResult = null;
-        for(String str : userStringsArray) {
+        for (String str : userStringsArray) {
             String[] words = str.split("\\s+");
             for (String word : words) {
                 if (isWordWithUniqueLetters(word)) {
@@ -142,7 +143,7 @@ public class StringsOperations {
                 Вывести на консоль те строки, длина которых меньше средней, а также их длину.%n---%n""");
         double strAverageLength = Arrays.stream(userStringsArray).mapToInt(String::length).average().orElse(0.0);
         System.out.printf("Средняя длина строки: %f%n", strAverageLength);
-        for(String str : userStringsArray) {
+        for (String str : userStringsArray) {
             if (str.length() < strAverageLength) {
                 System.out.printf("`%s`. Длина — %d.%n", str, str.length());
             }
@@ -156,7 +157,7 @@ public class StringsOperations {
                 NOTE: для решения задачи 1 массив строк был отсортирован по их длине, поэтому для решения
                 данной задачи достаточно просто вывести в консоль ранее отсортированный массив.%n---%n""");
         System.out.println("Строки в порядке возрастания значений их длины:");
-        for(String str : userStringsArray) {
+        for (String str : userStringsArray) {
             System.out.println(str);
         }
     }
