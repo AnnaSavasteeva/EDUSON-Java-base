@@ -60,9 +60,7 @@ public class StringsOperations {
         int left = 0;
         int right = word.length() - 1;
         while (left < right) {
-            if (word.charAt(left) != word.charAt(right)) {
-                return false;
-            }
+            if (word.charAt(left) != word.charAt(right)) return false;
             left++;
             right--;
         }
@@ -88,13 +86,13 @@ public class StringsOperations {
                 Вывести на консоль новую строку, в которой задублирована каждая буква из начальной строки.
                 Например, "Hello" -> "HHeelllloo".%n---%n""");
         for (String str : userStringsArray) {
-            StringBuilder doubledStringViaArrays = new StringBuilder();
+            StringBuilder doubledString = new StringBuilder();
             String[] words = str.split("\\s+");
             for (String word : words) {
-                doubledStringViaArrays.append(getDoubleLettersWord(word));
-                doubledStringViaArrays.append(" ");
+                doubledString.append(getDoubleLettersWord(word));
+                doubledString.append(" ");
             }
-            System.out.println(doubledStringViaArrays.toString().trim());
+            System.out.println(doubledString.toString().trim());
         }
     }
 
@@ -116,7 +114,7 @@ public class StringsOperations {
         for (String str : userStringsArray) {
             String[] words = str.split("\\s+");
             for (String word : words) {
-                if (isWordWithUniqueLetters(word)) {
+                if (word.length() > 1 && isWordWithUniqueLetters(word)) {
                     taskResult = word;
                     break;
                 }
