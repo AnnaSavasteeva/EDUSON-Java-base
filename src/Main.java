@@ -1,9 +1,11 @@
-import base.strings.StringsOperations;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
-
-        new StringsOperations().runHomework();
+        List<ServiceAvailable> availableServicesList = new ArrayList<>();
+        List<ServiceConnected> connectedServicesList = new ArrayList<>();
+        List<String> servicesCodesList = new ArrayList<>();
     }
 }
