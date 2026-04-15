@@ -5,6 +5,8 @@ public class Main {
 
     private static final long DURATION = 30L;
 
+    /* Нужно понять, есть ли услуги среди доступных и среди подключенных:
+    например, чтобы определить архивные услуги и проверить, у кого еще они активны */
     public static void main(String[] args) {
         List<ServiceAvailable> availableServicesList = getAvailableServicesList();
         List<ServiceConnected> connectedServicesList = getConnectedServicesList(availableServicesList);
