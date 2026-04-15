@@ -1,3 +1,5 @@
+package generics;
+
 import java.time.LocalDateTime;
 
 import static java.time.format.DateTimeFormatter.ofPattern;
