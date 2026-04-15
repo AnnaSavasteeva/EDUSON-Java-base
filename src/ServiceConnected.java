@@ -6,11 +6,11 @@ import java.time.LocalDateTime;
  */
 public class ServiceConnected {
 
-    private String code;
-    private String name;
-    private Long cost;
-    private LocalDateTime connectionDate;
-    private LocalDateTime endDate;
+    private final String code;
+    private final String name;
+    private final Long cost;
+    private final LocalDateTime connectionDate;
+    private final LocalDateTime endDate;
 
     public ServiceConnected(ServiceAvailable service) {
         this.code = service.getCode();

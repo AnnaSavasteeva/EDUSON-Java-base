@@ -8,10 +8,10 @@ import static java.time.format.DateTimeFormatter.ofPattern;
  */
 public class ServiceAvailable {
 
-    private String code;
-    private String name;
-    private Long cost;
-    private Long durationInDays;
+    private final String code;
+    private final String name;
+    private final Long cost;
+    private final Long durationInDays;
 
     public ServiceAvailable(String name, Long cost, Long durationInDays) {
         this.code = this.generateCode();
