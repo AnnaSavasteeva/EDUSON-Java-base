@@ -8,7 +8,7 @@ import static java.time.format.DateTimeFormatter.ofPattern;
  * @author annasavasteeva
  * @date 16.04.2026
  */
-public class ServiceAvailable {
+public class ServiceAvailable implements ServiceInfo {
 
     private final String code;
     private final String name;

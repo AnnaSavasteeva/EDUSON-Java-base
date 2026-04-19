@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
  * @author annasavasteeva
  * @date 16.04.2026
  */
-public class ServiceConnected {
+public class ServiceConnected implements ServiceInfo {
 
     private final String code;
     private final String name;

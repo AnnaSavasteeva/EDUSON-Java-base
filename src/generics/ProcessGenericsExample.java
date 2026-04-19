@@ -19,6 +19,10 @@ public class ProcessGenericsExample {
         List<String> servicesCodesList = getServicesCodesList(connectedServicesList);
     }
 
+    private String findServiceByCode(String serviceCode) {
+        return null;
+    }
+
     private List<String> getServicesCodesList(List<ServiceConnected> connectedServicesList) {
         String actualCode = connectedServicesList.get(0).getCode();
         String archivedCode = connectedServicesList.get(connectedServicesList.size() - 1).getCode();
