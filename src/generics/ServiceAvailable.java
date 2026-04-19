@@ -38,6 +38,11 @@ public class ServiceAvailable implements ServiceInfo {
         return durationInDays;
     }
 
+    @Override
+    public String toString() {
+        return String.format("ServiceAvailable{code: %s; name: %s; cost: %d}", this.code, this.name, this.cost);
+    }
+
     private String generateCode() {
         String dateTimePart = LocalDateTime.now().format(ofPattern("yyMMddhhmmss"));
         var randSixDigitNumber = (long) Math.floor(Math.random() * 900_000L) + 100_000L;

@@ -16,7 +16,7 @@ public class ProcessGenericsExample {
     public void processGenericExample() {
         List<ServiceAvailable> availableServicesList = getAvailableServicesList();
         List<ServiceConnected> connectedServicesList = getConnectedServicesList(availableServicesList);
-        List<String> servicesCodesList = getServicesCodesList(connectedServicesList);
+        List<String> servicesCodesList = getServicesCodesList(availableServicesList, connectedServicesList);
 
         List<ServiceAvailable> availableServicesFound = findServicesByCodeList(availableServicesList, servicesCodesList);
         List<ServiceConnected> connectedServicesFound = findServicesByCodeList(connectedServicesList, servicesCodesList);
@@ -32,7 +32,7 @@ public class ProcessGenericsExample {
             System.out.printf("Следующие услуги в архиве, но еще остаются потребители: %s%n", archivedServices);
             List<ServiceInfo> popularServices = new ArrayList<>(availableServicesFound);
             popularServices.retainAll(connectedServicesFound);
-            System.out.printf("Следующие услуги активны и ползуются спросом: %s%n", popularServices);
+            System.out.printf("Следующие услуги активны и пользуются спросом: %s%n", popularServices);
         }
     }
 
@@ -66,11 +66,12 @@ public class ProcessGenericsExample {
         return null;
     }
 
-    private List<String> getServicesCodesList(List<ServiceConnected> connectedServicesList) {
+    private List<String> getServicesCodesList(List<ServiceAvailable> availableServicesList, List<ServiceConnected> connectedServicesList) {
+        String serviceNotInDemand = availableServicesList.get(3).getCode();
         String actualCode = connectedServicesList.get(0).getCode();
         String archivedCode = connectedServicesList.get(connectedServicesList.size() - 1).getCode();
         String unknownCode = "123456789";
-        return new ArrayList<>(List.of(actualCode, archivedCode, unknownCode));
+        return new ArrayList<>(List.of(serviceNotInDemand, actualCode, archivedCode, unknownCode));
     }
 
     private List<ServiceConnected> getConnectedServicesList(List<ServiceAvailable> availableServices) {

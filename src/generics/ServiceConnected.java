@@ -42,6 +42,11 @@ public class ServiceConnected implements ServiceInfo {
         return endDate;
     }
 
+    @Override
+    public String toString() {
+        return String.format("ServiceConnected{code: %s; name: %s; cost: %d}", this.code, this.name, this.cost);
+    }
+
     private LocalDateTime getEndDate(Long duration) {
         return connectionDate.plusDays(duration);
     }
