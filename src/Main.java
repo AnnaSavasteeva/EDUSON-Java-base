@@ -1,4 +1,4 @@
-import generics.ProcessGenericsExample;
+import override_equals_hash_tostring.ProcessGenericsExample;
 
 public class Main {
 

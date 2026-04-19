@@ -1,4 +1,4 @@
-package generics;
+package override_equals_hash_tostring;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
