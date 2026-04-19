@@ -1,6 +1,7 @@
 package generics;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import static java.time.format.DateTimeFormatter.ofPattern;
 
@@ -41,6 +42,24 @@ public class ServiceAvailable implements ServiceInfo {
     @Override
     public String toString() {
         return String.format("ServiceAvailable{code: %s; name: %s; cost: %d}", this.code, this.name, this.cost);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+
+        if (obj == null) return false;
+
+        if (!(obj instanceof ServiceInfo other)) return false;
+
+        return this.code.equals(other.getCode())
+                && this.name.equals(other.getName())
+                && this.cost.compareTo(other.getCost()) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(code, name, cost);
     }
 
     private String generateCode() {

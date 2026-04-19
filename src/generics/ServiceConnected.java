@@ -1,6 +1,7 @@
 package generics;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  * @author annasavasteeva
@@ -45,6 +46,24 @@ public class ServiceConnected implements ServiceInfo {
     @Override
     public String toString() {
         return String.format("ServiceConnected{code: %s; name: %s; cost: %d}", this.code, this.name, this.cost);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+
+        if (obj == null) return false;
+
+        if (!(obj instanceof ServiceInfo other)) return false;
+
+        return this.code.equals(other.getCode())
+                && this.name.equals(other.getName())
+                && this.cost.compareTo(other.getCost()) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(code, name, cost);
     }
 
     private LocalDateTime getEndDate(Long duration) {
