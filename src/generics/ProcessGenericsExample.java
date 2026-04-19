@@ -17,6 +17,32 @@ public class ProcessGenericsExample {
         List<ServiceAvailable> availableServicesList = getAvailableServicesList();
         List<ServiceConnected> connectedServicesList = getConnectedServicesList(availableServicesList);
         List<String> servicesCodesList = getServicesCodesList(connectedServicesList);
+
+        List<ServiceAvailable> availableServicesFound = findServicesByCodeList(availableServicesList, servicesCodesList);
+        List<ServiceConnected> connectedServicesFound = findServicesByCodeList(connectedServicesList, servicesCodesList);
+
+        if (availableServicesFound.isEmpty() && connectedServicesFound.isEmpty()) {
+            System.out.printf("Следующие услуги в архиве и более никем не используются: %s", servicesCodesList);
+        } else {
+            List<ServiceInfo> servicesNotInDemand = new ArrayList<>(availableServicesFound);
+            servicesNotInDemand.removeAll(connectedServicesFound);
+            System.out.printf("Следующие услуги не востребованы никем: %s%n", servicesNotInDemand);
+            List<ServiceInfo> archivedServices = new ArrayList<>(connectedServicesFound);
+            archivedServices.removeAll(availableServicesFound);
+            System.out.printf("Следующие услуги в архиве, но еще остаются потребители: %s%n", archivedServices);
+            List<ServiceInfo> popularServices = new ArrayList<>(availableServicesFound);
+            popularServices.retainAll(connectedServicesFound);
+            System.out.printf("Следующие услуги активны и ползуются спросом: %s%n", popularServices);
+        }
+    }
+
+    private <T extends ServiceInfo> List<T> findServicesByCodeList(List<T> servicesList, List<String> codes) {
+        List<T> foundServices = new ArrayList<>();
+        for (String code : codes) {
+            T service = findServiceByCode(servicesList, code);
+            if (service != null) foundServices.add(service);
+        }
+        return foundServices;
     }
 
     private <T extends ServiceInfo> T findServiceByCode(List<T> servicesList, String serviceCode) {
