@@ -52,20 +52,6 @@ public class ProcessGenericsExample {
         return null;
     }
 
-    private ServiceConnected findConnectedServiceByCode(List<ServiceConnected> connectedServicesList, String serviceCode) {
-        for (ServiceConnected service : connectedServicesList) {
-            if (service.getCode().equals(serviceCode)) return service;
-        }
-        return null;
-    }
-
-    private ServiceAvailable findAvailableServiceByCode(List<ServiceAvailable> availableServicesList, String serviceCode) {
-        for (ServiceAvailable service : availableServicesList) {
-            if (service.getCode().equals(serviceCode)) return service;
-        }
-        return null;
-    }
-
     private List<String> getServicesCodesList(List<ServiceAvailable> availableServicesList, List<ServiceConnected> connectedServicesList) {
         String serviceNotInDemand = availableServicesList.get(3).getCode();
         String actualCode = connectedServicesList.get(0).getCode();
