@@ -1,6 +1,7 @@
 package override_equals_hash_tostring;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,17 +13,18 @@ import static java.time.format.DateTimeFormatter.ofPattern;
  */
 public class User {
 
-    private long userId;
+    private final long userId;
     private String userName;
     private String userEmail;
     private String userPassword;
     private List<User> userFriends;
 
-    public User(String userName, String userEmail) {
-        this.userId = generateUserId();
+    public User(long userId, String userName, String userEmail) {
+        this.userId = userId;
         this.userName = userName;
         this.userEmail = userEmail;
         this.userPassword = generateDefaultPassword();
+        this.userFriends = new ArrayList<>();
     }
 
     public String getUserName() {
@@ -74,9 +76,5 @@ public class User {
         String dateTimePart = LocalDateTime.now().format(ofPattern("yyMMddhhmmss"));
         var randSixDigitNumber = (long) Math.floor(Math.random() * 900_000L) + 100_000L;
         return dateTimePart + randSixDigitNumber;
-    }
-
-    private long generateUserId() {
-        return (long) Math.floor(Math.random() * 900_000L) + 100_000L;
     }
 }
