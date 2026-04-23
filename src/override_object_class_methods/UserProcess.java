@@ -1,4 +1,4 @@
-package override_equals_hash_tostring;
+package override_object_class_methods;
 
 import java.util.ArrayList;
 import java.util.Arrays;

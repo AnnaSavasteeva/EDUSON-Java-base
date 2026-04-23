@@ -1,4 +1,4 @@
-import override_equals_hash_tostring.UserProcess;
+import override_object_class_methods.UserProcess;
 
 public class Main {
 
