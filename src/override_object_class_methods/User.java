@@ -32,7 +32,7 @@ public class User implements Cloneable {
         this.userName = other.getUserName();
         this.userEmail = other.getUserEmail();
         this.userFriends = getDeepCopyOfUserFriends(other.getUserFriends());
-        this.location = new Address(other.getLocation());
+        this.location = new Address(other.getLocation().getCity());
     }
 
     public long getUserId() {

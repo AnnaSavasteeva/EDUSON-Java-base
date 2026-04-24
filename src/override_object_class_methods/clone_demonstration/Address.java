@@ -12,10 +12,6 @@ public class Address implements Cloneable {
         this.city = city;
     }
 
-    public Address(Address address) {
-        this.city = address.getCity();
-    }
-
     public String getCity() {
         return city;
     }
