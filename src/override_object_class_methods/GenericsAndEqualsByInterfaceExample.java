@@ -46,10 +46,10 @@ public class GenericsAndEqualsByInterfaceExample {
     }
 
     private <T extends ServiceInfo> T findServiceByCode(List<T> servicesList, String serviceCode) {
-        for (T service : servicesList) {
-            if (service.getCode().equals(serviceCode)) return service;
-        }
-        return null;
+        return servicesList.stream()
+                .filter(service -> service.getCode().equals(serviceCode))
+                .findFirst()
+                .orElse(null);
     }
 
     private List<String> getServicesCodesList(List<ServiceAvailable> availableServicesList, List<ServiceConnected> connectedServicesList) {
