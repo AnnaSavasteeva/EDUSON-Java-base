@@ -31,8 +31,7 @@ public class UserProcess {
     }
 
     private void processUserCopy(List<Long> ids, boolean isDeep) {
-        String title = isDeep ? "DEEP COPY" : "SHALLOW COPY";
-        System.out.println(title);
+        System.out.println(isDeep ? "DEEP COPY" : "SHALLOW COPY");
         long id = ids.get(new Random().nextInt(ids.size()));
 
         User original = getUserById(id);

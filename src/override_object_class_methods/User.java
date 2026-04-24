@@ -61,7 +61,7 @@ public class User implements Cloneable {
 
     public Object deepClone() throws CloneNotSupportedException {
         User clonedUser = (User) this.clone();
-        clonedUser.setLocation((AddressForDeepCopy) this.location.clone());
+        clonedUser.location = (AddressForDeepCopy) location.clone();
         for (int i = 0; i < userFriends.size(); i++) {
             User clonedFriend = (User) userFriends.get(i).clone();
             userFriends.set(i, clonedFriend);
