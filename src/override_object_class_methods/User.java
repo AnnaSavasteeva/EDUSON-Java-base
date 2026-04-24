@@ -30,6 +30,10 @@ public class User implements Cloneable {
         return userId;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
     public void setUserName(String userName) {
         this.userName = userName;
     }
@@ -40,14 +44,6 @@ public class User implements Cloneable {
 
     public List<User> getUserFriends() {
         return userFriends;
-    }
-
-    public void setUserFriends(List<User> userFriends) {
-        this.userFriends = userFriends;
-    }
-
-    public AddressForDeepCopy getLocation() {
-        return location;
     }
 
     public void setLocation(AddressForDeepCopy location) {
@@ -79,6 +75,7 @@ public class User implements Cloneable {
                 "userId=" + userId +
                 ", userName='" + userName + '\'' +
                 ", userEmail='" + userEmail + '\'' +
+                ", location='" + location + '\'' +
                 '}';
     }
 

@@ -1,8 +1,8 @@
 package override_object_class_methods;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import override_object_class_methods.clone_demonstration.AddressForDeepCopy;
+
+import java.util.*;
 
 /**
  * @author annasavasteeva
@@ -15,14 +15,60 @@ public class UserProcess {
     public void processUserTasks() {
         usersList = fillUsersList();
         compareUsers(usersList);
+        System.out.println("----------");
+        System.out.println("----------");
+        List<Long> userIdsList = usersList.stream()
+                .filter(user -> !user.getUserFriends().isEmpty())
+                .map(User::getUserId)
+                .toList();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Выполнить deep copy?");
+        processUserCopy(userIdsList, sc.nextBoolean());
+        sc.close();
+    }
+
+    private void processUserCopy(List<Long> ids, boolean isDeep) {
+        String title = isDeep ? "DEEP COPY" : "SHALLOW COPY";
+        System.out.println(title);
+        long id = ids.get(new Random().nextInt(ids.size()));
+
+        User original = getUserById(id);
+        printOriginalUserData(original);
+
+        User cloned = copyUserById(id, isDeep);
+        printClonedUserData(cloned);
+
+        AddressForDeepCopy newLocation = new AddressForDeepCopy("NEW LOCATION");
+        cloned.setLocation(newLocation);
+        System.out.println("Поменяли локацию у копии на " + newLocation.getCity());
+
+        var clonedFriend = cloned.getUserFriends().get(0);
+        System.out.printf("Поменяли имя у друга копии '%s' на '%s'%n", clonedFriend.getUserName(), "NEW NAME");
+        clonedFriend.setUserName("NEW NAME");
+
+        System.out.println("---");
+        printOriginalUserData(original);
+        printClonedUserData(cloned);
+    }
+
+    private void printClonedUserData(User user) {
+        System.out.println("Копия: " + user);
+        System.out.println("Друзья копии: ");
+        user.getUserFriends().forEach(System.out::println);
+        System.out.println("---");
+    }
+
+    private void printOriginalUserData(User user) {
+        System.out.println("Оригинал: " + user);
+        System.out.println("Друзья оригинала: ");
+        user.getUserFriends().forEach(System.out::println);
+        System.out.println("---");
     }
 
     private User copyUserById(long id, boolean isDeepCopy) {
         User userById = getUserById(id);
-
         if (!isDeepCopy) return cloneUser(userById);
-
-        return null;
+        return deepCloneUser(userById);
     }
 
     private User getUserById(long id) {
