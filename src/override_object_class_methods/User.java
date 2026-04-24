@@ -1,6 +1,6 @@
 package override_object_class_methods;
 
-import override_object_class_methods.clone_demonstration.AddressForDeepCopy;
+import override_object_class_methods.clone_demonstration.Address;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,14 +16,14 @@ public class User implements Cloneable {
     private String userName;
     private String userEmail;
     private List<User> userFriends;
-    private AddressForDeepCopy location;
+    private Address location;
 
     public User(String userName, String userEmail) {
         this.userId = generateUserId();
         this.userName = userName;
         this.userEmail = userEmail;
         this.userFriends = new ArrayList<>();
-        this.location = new AddressForDeepCopy("London");
+        this.location = new Address("London");
     }
 
     public long getUserId() {
@@ -46,7 +46,7 @@ public class User implements Cloneable {
         return userFriends;
     }
 
-    public void setLocation(AddressForDeepCopy location) {
+    public void setLocation(Address location) {
         this.location = location;
     }
 
@@ -61,7 +61,7 @@ public class User implements Cloneable {
 
     public Object deepClone() throws CloneNotSupportedException {
         User clonedUser = (User) this.clone();
-        clonedUser.location = (AddressForDeepCopy) location.clone();
+        clonedUser.location = (Address) location.clone();
         for (int i = 0; i < userFriends.size(); i++) {
             User clonedFriend = (User) userFriends.get(i).clone();
             userFriends.set(i, clonedFriend);

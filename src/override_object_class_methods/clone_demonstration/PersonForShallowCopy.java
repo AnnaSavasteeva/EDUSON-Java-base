@@ -8,9 +8,9 @@ public class PersonForShallowCopy implements Cloneable {
 
     private String name;
     private int age;
-    private AddressForShallowCopy address;
+    private Address address;
 
-    public PersonForShallowCopy(String name, int age, AddressForShallowCopy address) {
+    public PersonForShallowCopy(String name, int age, Address address) {
         this.name = name;
         this.age = age;
         this.address = address;
@@ -18,12 +18,8 @@ public class PersonForShallowCopy implements Cloneable {
 
     //    GETTERS AND SETTERS
 
-    public AddressForShallowCopy getAddress() {
+    public Address getAddress() {
         return address;
-    }
-
-    public void setAddress(AddressForShallowCopy addressForShallowCopy) {
-        this.address = addressForShallowCopy;
     }
 
     @Override

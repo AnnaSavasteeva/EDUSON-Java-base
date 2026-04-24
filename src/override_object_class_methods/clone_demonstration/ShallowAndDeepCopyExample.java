@@ -20,7 +20,7 @@ public class ShallowAndDeepCopyExample {
 
     private void processDeepCopyDemonstration() {
         try {
-            AddressForDeepCopy address = new AddressForDeepCopy("Wonderland");
+            Address address = new Address("Wonderland");
             PersonForDeepCopy original = new PersonForDeepCopy("White Rabbit", 3, address);
             PersonForDeepCopy cloned = (PersonForDeepCopy) original.clone();
             System.out.println("Original for deep copy: " + original);
@@ -39,7 +39,7 @@ public class ShallowAndDeepCopyExample {
 
     private void processShallowCopyDemonstration() {
         try {
-            AddressForShallowCopy address = new AddressForShallowCopy("New York");
+            Address address = new Address("New York");
             PersonForShallowCopy original = new PersonForShallowCopy("Alice", 10, address);
             PersonForShallowCopy cloned = (PersonForShallowCopy) original.clone();
             System.out.println("Original for shallow copy: " + original);

@@ -4,11 +4,11 @@ package override_object_class_methods.clone_demonstration;
  * @author annasavasteeva
  * @date 24.04.2026
  */
-public class AddressForDeepCopy implements Cloneable {
+public class Address implements Cloneable {
 
     private String city;
 
-    public AddressForDeepCopy(String city) {
+    public Address(String city) {
         this.city = city;
     }
 
@@ -27,7 +27,7 @@ public class AddressForDeepCopy implements Cloneable {
 
     @Override
     public String toString() {
-        return "AddressForDeepCopy{" +
+        return "Address{" +
                 "city='" + city + '\'' +
                 '}';
     }

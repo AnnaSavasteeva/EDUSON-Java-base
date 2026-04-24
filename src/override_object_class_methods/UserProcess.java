@@ -1,6 +1,6 @@
 package override_object_class_methods;
 
-import override_object_class_methods.clone_demonstration.AddressForDeepCopy;
+import override_object_class_methods.clone_demonstration.Address;
 
 import java.util.*;
 
@@ -40,7 +40,7 @@ public class UserProcess {
         User cloned = copyUserById(id, isDeep);
         printClonedUserData(cloned);
 
-        AddressForDeepCopy newLocation = new AddressForDeepCopy("NEW LOCATION");
+        Address newLocation = new Address("NEW LOCATION");
         cloned.setLocation(newLocation);
         System.out.println("Поменяли локацию у копии на " + newLocation.getCity());
 

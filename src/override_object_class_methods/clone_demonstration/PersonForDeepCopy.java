@@ -8,9 +8,9 @@ public class PersonForDeepCopy implements Cloneable {
 
     private String name;
     private int age;
-    private AddressForDeepCopy address;
+    private Address address;
 
-    public PersonForDeepCopy(String name, int age, AddressForDeepCopy address) {
+    public PersonForDeepCopy(String name, int age, Address address) {
         this.name = name;
         this.age = age;
         this.address = address;
@@ -18,11 +18,11 @@ public class PersonForDeepCopy implements Cloneable {
 
     //    GETTERS AND SETTERS
 
-    public AddressForDeepCopy getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(AddressForDeepCopy address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
@@ -30,7 +30,7 @@ public class PersonForDeepCopy implements Cloneable {
     public Object clone() throws CloneNotSupportedException {
         PersonForDeepCopy cloned = (PersonForDeepCopy) super.clone();
 //        Deep copy of address:
-        cloned.setAddress((AddressForDeepCopy) address.clone());
+        cloned.setAddress((Address) address.clone());
         return cloned;
     }
 
