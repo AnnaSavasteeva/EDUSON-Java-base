@@ -10,9 +10,26 @@ import java.util.List;
  */
 public class UserProcess {
 
+    private List<User> usersList = new ArrayList<>();
+
     public void processUserTasks() {
-        List<User> usersList = createUsersList();
+        usersList = fillUsersList();
         compareUsers(usersList);
+    }
+
+    private User copyUserById(long id, boolean isDeepCopy) {
+        User userById = getUserById(id);
+
+        if (!isDeepCopy) return cloneUser(userById);
+
+        return null;
+    }
+
+    private User getUserById(long id) {
+        return usersList.stream()
+                .filter(user -> user.getUserId() == id)
+                .findFirst()
+                .orElseThrow(() -> new AssertionError("User wasn't found with id: " + id));
     }
 
     private void compareUsers(List<User> usersList) {
@@ -32,30 +49,36 @@ public class UserProcess {
         System.out.println("----------");
     }
 
-    private List<User> createUsersList() {
+    private List<User> fillUsersList() {
         User tom1 = new User("Tom", "tom@mail.com");
-        User tom2 = null;
-        try {
-            tom2 = (User) tom1.clone();
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
+        User tom2 = cloneUser(tom1);
         User jerry = new User("Jerry", "jerry@mail.com");
         User tomAndJerry = new User("Tom", "jerry@mail.com");
         User jerryAndTom = new User("Jerry", "tom@mail.com");
         User tomEnemy = new User("Bulldog", "bulldog@mail.com");
-        User housewife = null;
-        try {
-            housewife = (User) tomEnemy.deepClone();
-            housewife.setUserName("Housewife");
-            housewife.setUserEmail("housewife@mail.com");
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
+        User housewife = deepCloneUser(tomEnemy);
+        housewife.setUserName("Housewife");
+        housewife.setUserEmail("housewife@mail.com");
         addFriendsToUser(tom1, jerry, housewife);
         addFriendsToUser(jerry, tom1, tomEnemy);
         addFriendsToUser(housewife, tomEnemy);
         return new ArrayList<>(Arrays.asList(tom1, tom2, jerry, tomAndJerry, jerryAndTom, tomEnemy, housewife));
+    }
+
+    private User deepCloneUser(User user) {
+        try {
+            return (User) user.deepClone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private User cloneUser(User user) {
+        try {
+            return (User) user.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void addFriendsToUser(User user, User... friends) {

@@ -26,6 +26,10 @@ public class User implements Cloneable {
         this.location = new AddressForDeepCopy("London");
     }
 
+    public long getUserId() {
+        return userId;
+    }
+
     public void setUserName(String userName) {
         this.userName = userName;
     }
