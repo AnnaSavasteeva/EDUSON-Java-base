@@ -33,15 +33,25 @@ public class UserProcess {
     }
 
     private List<User> createUsersList() {
-        long idForTom = generateUserId();
         User tom1 = new User("Tom", "tom@mail.com");
-        User tom2 = new User("Tom", "tom@mail.com");
+        User tom2 = null;
+        try {
+            tom2 = (User) tom1.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
         User jerry = new User("Jerry", "jerry@mail.com");
         User tomAndJerry = new User("Tom", "jerry@mail.com");
         User jerryAndTom = new User("Jerry", "tom@mail.com");
-        long idForBulldog = generateUserId();
         User tomEnemy = new User("Bulldog", "bulldog@mail.com");
-        User housewife = new User("Housewife", "housewife@mail.com");
+        User housewife = null;
+        try {
+            housewife = (User) tomEnemy.deepClone();
+            housewife.setUserName("Housewife");
+            housewife.setUserEmail("housewife@mail.com");
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
         addFriendsToUser(tom1, jerry, housewife);
         addFriendsToUser(jerry, tom1, tomEnemy);
         addFriendsToUser(housewife, tomEnemy);
