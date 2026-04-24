@@ -14,14 +14,17 @@ public class UserProcess {
 
     public void processUserTasks() {
         usersList = fillUsersList();
-        compareUsers(usersList);
-        System.out.println("----------");
-        System.out.println("----------");
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Сравнить пользователей?");
+        if (sc.nextBoolean()) {
+            compareUsers(usersList);
+            System.out.println("----------");
+            System.out.println("----------");
+        }
         List<Long> userIdsList = usersList.stream()
                 .filter(user -> !user.getUserFriends().isEmpty())
                 .map(User::getUserId)
                 .toList();
-        Scanner sc = new Scanner(System.in);
         System.out.println("Выполнить deep copy?");
         processUserCopy(userIdsList, sc.nextBoolean());
         sc.close();
