@@ -5,6 +5,7 @@ import override_object_class_methods.clone_demonstration.Address;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * @author annasavasteeva
@@ -12,7 +13,7 @@ import java.util.Objects;
  */
 public class User implements Cloneable {
 
-    private final long userId;
+    private long userId;
     private String userName;
     private String userEmail;
     private List<User> userFriends;
@@ -30,7 +31,7 @@ public class User implements Cloneable {
         this.userId = other.getUserId();
         this.userName = other.getUserName();
         this.userEmail = other.getUserEmail();
-        this.userFriends = new ArrayList<>(other.getUserFriends());
+        this.userFriends = getDeepCopyOfUserFriends(other.getUserFriends());
         this.location = new Address(other.getLocation());
     }
 
@@ -95,6 +96,20 @@ public class User implements Cloneable {
     @Override
     public int hashCode() {
         return Objects.hash(userId, userName, userEmail);
+    }
+
+    private List<User> getDeepCopyOfUserFriends(List<User> userFriends) {
+        List<User> friendsCopy = userFriends.stream()
+                .map(user -> new User(user.getUserName(), user.getUserEmail()))
+                .collect(Collectors.toList());
+        for (int i = 0; i < userFriends.size(); i++) {
+            friendsCopy.get(i).setUserId(userFriends.get(i).getUserId());
+        }
+        return friendsCopy;
+    }
+
+    private void setUserId(long userId) {
+        this.userId = userId;
     }
 
     private long generateUserId() {

@@ -46,7 +46,7 @@ public class UserProcess {
         System.out.println("Поменяли локацию у копии на " + newLocation.getCity());
 
         var clonedFriend = cloned.getUserFriends().get(0);
-        System.out.printf("Поменяли имя у друга копии '%s' на '%s'%n", clonedFriend.getUserName(), "NEW NAME");
+        System.out.printf("Поменяли имя у друга копии с '%s' на '%s'%n", clonedFriend.getUserName(), "NEW NAME");
         clonedFriend.setUserName("NEW NAME");
 
         System.out.println("---");
