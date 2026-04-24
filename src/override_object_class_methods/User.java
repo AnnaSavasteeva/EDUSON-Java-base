@@ -1,50 +1,39 @@
 package override_object_class_methods;
 
-import java.time.LocalDateTime;
+import override_object_class_methods.clone_demonstration.AddressForDeepCopy;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
-import static java.time.format.DateTimeFormatter.ofPattern;
 
 /**
  * @author annasavasteeva
  * @date 22.04.2026
  */
-public class User {
+public class User implements Cloneable {
 
     private final long userId;
     private String userName;
     private String userEmail;
-    private String userPassword;
     private List<User> userFriends;
+    private AddressForDeepCopy location;
 
     public User(String userName, String userEmail) {
         this.userId = generateUserId();
         this.userName = userName;
         this.userEmail = userEmail;
-        this.userPassword = generateDefaultPassword();
         this.userFriends = new ArrayList<>();
+        this.location = new AddressForDeepCopy("London");
     }
 
-    public String getUserName() {
-        return userName;
+//    GETTERS AND SETTERS
+
+    public AddressForDeepCopy getLocation() {
+        return location;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-
-    public List<User> getUserFriends() {
-        return userFriends;
+    public void setLocation(AddressForDeepCopy location) {
+        this.location = location;
     }
 
     public void addFriend(User friend) {
@@ -72,10 +61,9 @@ public class User {
         return Objects.hash(userId, userName, userEmail);
     }
 
-    private String generateDefaultPassword() {
-        String dateTimePart = LocalDateTime.now().format(ofPattern("yyMMddhhmmss"));
-        var randSixDigitNumber = (long) Math.floor(Math.random() * 900_000L) + 100_000L;
-        return dateTimePart + randSixDigitNumber;
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
     private long generateUserId() {
