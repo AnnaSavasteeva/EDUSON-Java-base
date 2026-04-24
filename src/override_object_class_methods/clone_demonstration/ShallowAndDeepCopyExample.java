@@ -4,7 +4,7 @@ package override_object_class_methods.clone_demonstration;
  * @author annasavasteeva
  * @date 23.04.2026
  */
-public class CloningProcess {
+public class ShallowAndDeepCopyExample {
 
     public void processCloningDemonstration() {
         System.out.println("----------");
@@ -29,7 +29,7 @@ public class CloningProcess {
 //            Modify the address in the cloned object
             cloned.getAddress().setCity("Sea of Tears");
 
-            System.out.println("--- The address in the cloned object was modified to Los Angeles:");
+            System.out.println("--- The address in the cloned object was modified to 'Sea of Tears':");
             System.out.println("Original for deep copy: " + original);
             System.out.println("Cloned for deep copy: " + cloned);
         } catch (CloneNotSupportedException e) {
@@ -40,7 +40,7 @@ public class CloningProcess {
     private void processShallowCopyDemonstration() {
         try {
             AddressForShallowCopy address = new AddressForShallowCopy("New York");
-            PersonForShallowCopy original = new PersonForShallowCopy("Alice", 15, address);
+            PersonForShallowCopy original = new PersonForShallowCopy("Alice", 10, address);
             PersonForShallowCopy cloned = (PersonForShallowCopy) original.clone();
             System.out.println("Original for shallow copy: " + original);
             System.out.println("Cloned for shallow copy: " + cloned);
