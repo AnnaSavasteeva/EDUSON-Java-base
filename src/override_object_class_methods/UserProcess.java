@@ -63,8 +63,4 @@ public class UserProcess {
             user.addFriend(friend);
         }
     }
-
-    private long generateUserId() {
-        return (long) Math.floor(Math.random() * 900_000L) + 100_000L;
-    }
 }
