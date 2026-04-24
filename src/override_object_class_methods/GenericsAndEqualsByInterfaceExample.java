@@ -9,11 +9,11 @@ import java.util.List;
  * Бизнес-смысл: нужно понять, есть ли услуги среди доступных и среди подключенных — например, чтобы найти
  * архивные услуги и проверить, какие из них пока активны
  */
-public class ProcessGenericsExample {
+public class GenericsAndEqualsByInterfaceExample {
 
     private static final long DURATION = 30L;
 
-    public void processGenericExample() {
+    public void processExample() {
         List<ServiceAvailable> availableServicesList = getAvailableServicesList();
         List<ServiceConnected> connectedServicesList = getConnectedServicesList(availableServicesList);
         List<String> servicesCodesList = getServicesCodesList(availableServicesList, connectedServicesList);
