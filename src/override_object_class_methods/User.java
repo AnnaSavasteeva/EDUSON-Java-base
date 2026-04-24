@@ -63,10 +63,6 @@ public class User implements Cloneable {
         return location;
     }
 
-    public void setLocation(Address location) {
-        this.location = location;
-    }
-
     public void addFriend(User friend) {
         this.userFriends.add(friend);
     }

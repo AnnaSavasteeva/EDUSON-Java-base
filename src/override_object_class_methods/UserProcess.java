@@ -1,7 +1,5 @@
 package override_object_class_methods;
 
-import override_object_class_methods.clone_demonstration.Address;
-
 import java.util.*;
 
 /**
@@ -43,13 +41,14 @@ public class UserProcess {
         User cloned = copyUser(original, isDeep);
         printClonedUserData(cloned);
 
-        Address newLocation = new Address("NEW LOCATION");
-        cloned.setLocation(newLocation);
-        System.out.println("Поменяли локацию у копии на " + newLocation.getCity());
+        String newLocation = "NEW LOCATION";
+        cloned.getLocation().setCity(newLocation);
+        System.out.println("Поменяли локацию у копии на " + newLocation);
 
         var clonedFriend = cloned.getUserFriends().get(0);
-        System.out.printf("Поменяли имя у друга копии с '%s' на '%s'%n", clonedFriend.getUserName(), "NEW NAME");
-        clonedFriend.setUserName("NEW NAME");
+        String newName = "NEW NAME";
+        System.out.printf("Поменяли имя у друга копии с '%s' на '%s'%n", clonedFriend.getUserName(), newName);
+        clonedFriend.setUserName(newName);
 
         System.out.println("---");
         printOriginalUserData(original);
