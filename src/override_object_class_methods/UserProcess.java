@@ -11,7 +11,7 @@ import java.util.List;
 public class UserProcess {
 
     public void processUserTasks() {
-        List<User> usersList = getUsersList();
+        List<User> usersList = createUsersList();
         compareUsers(usersList);
     }
 
@@ -32,16 +32,16 @@ public class UserProcess {
         System.out.println("----------");
     }
 
-    private List<User> getUsersList() {
+    private List<User> createUsersList() {
         long idForTom = generateUserId();
-        User tom1 = new User(idForTom, "Tom", "tom@mail.com");
-        User tom2 = new User(idForTom, "Tom", "tom@mail.com");
-        User jerry = new User(generateUserId(), "Jerry", "jerry@mail.com");
-        User tomAndJerry = new User(generateUserId(), "Tom", "jerry@mail.com");
-        User jerryAndTom = new User(generateUserId(), "Jerry", "tom@mail.com");
+        User tom1 = new User("Tom", "tom@mail.com");
+        User tom2 = new User("Tom", "tom@mail.com");
+        User jerry = new User("Jerry", "jerry@mail.com");
+        User tomAndJerry = new User("Tom", "jerry@mail.com");
+        User jerryAndTom = new User("Jerry", "tom@mail.com");
         long idForBulldog = generateUserId();
-        User tomEnemy = new User(idForBulldog, "Bulldog", "bulldog@mail.com");
-        User housewife = new User(idForBulldog, "Housewife", "housewife@mail.com");
+        User tomEnemy = new User("Bulldog", "bulldog@mail.com");
+        User housewife = new User("Housewife", "housewife@mail.com");
         addFriendsToUser(tom1, jerry, housewife);
         addFriendsToUser(jerry, tom1, tomEnemy);
         addFriendsToUser(housewife, tomEnemy);

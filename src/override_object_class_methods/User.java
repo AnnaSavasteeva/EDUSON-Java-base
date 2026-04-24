@@ -19,8 +19,8 @@ public class User {
     private String userPassword;
     private List<User> userFriends;
 
-    public User(long userId, String userName, String userEmail) {
-        this.userId = userId;
+    public User(String userName, String userEmail) {
+        this.userId = generateUserId();
         this.userName = userName;
         this.userEmail = userEmail;
         this.userPassword = generateDefaultPassword();
@@ -76,5 +76,9 @@ public class User {
         String dateTimePart = LocalDateTime.now().format(ofPattern("yyMMddhhmmss"));
         var randSixDigitNumber = (long) Math.floor(Math.random() * 900_000L) + 100_000L;
         return dateTimePart + randSixDigitNumber;
+    }
+
+    private long generateUserId() {
+        return (long) Math.floor(Math.random() * 900_000L) + 100_000L;
     }
 }
