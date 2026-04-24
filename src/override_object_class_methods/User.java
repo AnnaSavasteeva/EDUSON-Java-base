@@ -26,6 +26,14 @@ public class User implements Cloneable {
         this.location = new Address("London");
     }
 
+    public User(User other) {
+        this.userId = other.getUserId();
+        this.userName = other.getUserName();
+        this.userEmail = other.getUserEmail();
+        this.userFriends = new ArrayList<>(other.getUserFriends());
+        this.location = new Address(other.getLocation());
+    }
+
     public long getUserId() {
         return userId;
     }
@@ -38,12 +46,20 @@ public class User implements Cloneable {
         this.userName = userName;
     }
 
+    public String getUserEmail() {
+        return userEmail;
+    }
+
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
     }
 
     public List<User> getUserFriends() {
         return userFriends;
+    }
+
+    public Address getLocation() {
+        return location;
     }
 
     public void setLocation(Address location) {
@@ -57,16 +73,6 @@ public class User implements Cloneable {
     @Override
     public Object clone() throws CloneNotSupportedException {
         return super.clone();
-    }
-
-    public Object deepClone() throws CloneNotSupportedException {
-        User clonedUser = (User) this.clone();
-        clonedUser.location = (Address) location.clone();
-        for (int i = 0; i < userFriends.size(); i++) {
-            User clonedFriend = (User) userFriends.get(i).clone();
-            userFriends.set(i, clonedFriend);
-        }
-        return clonedUser;
     }
 
     @Override

@@ -37,7 +37,8 @@ public class UserProcess {
         User original = getUserById(id);
         printOriginalUserData(original);
 
-        User cloned = copyUserById(id, isDeep);
+//        User cloned = copyUserById(id, isDeep);
+        User cloned = copyUser(original, isDeep);
         printClonedUserData(cloned);
 
         Address newLocation = new Address("NEW LOCATION");
@@ -65,6 +66,11 @@ public class UserProcess {
         System.out.println("Друзья оригинала: ");
         user.getUserFriends().forEach(System.out::println);
         System.out.println("---");
+    }
+
+    private User copyUser(User user, boolean isDeepCopy) {
+        if (!isDeepCopy) return cloneUser(user);
+        return deepCloneUser(user);
     }
 
     private User copyUserById(long id, boolean isDeepCopy) {
@@ -114,11 +120,7 @@ public class UserProcess {
     }
 
     private User deepCloneUser(User user) {
-        try {
-            return (User) user.deepClone();
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException(e);
-        }
+            return new User(user);
     }
 
     private User cloneUser(User user) {
