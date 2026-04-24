@@ -13,25 +13,27 @@ public class UserProcess {
     private List<User> usersList = new ArrayList<>();
 
     public void processUserTasks() {
-        usersList = fillUsersList();
         Scanner sc = new Scanner(System.in);
         System.out.println("Сравнить пользователей?");
         if (sc.nextBoolean()) {
+            usersList = fillUsersListForCompare();
             compareUsers(usersList);
             System.out.println("----------");
             System.out.println("----------");
         }
-        List<Long> userIdsList = usersList.stream()
-                .filter(user -> !user.getUserFriends().isEmpty())
-                .map(User::getUserId)
-                .toList();
-        System.out.println("Выполнить deep copy?");
-        processUserCopy(userIdsList, sc.nextBoolean());
+        System.out.println("Вполнить копирование?");
+        if (sc.nextBoolean()) {
+            usersList = fillUsersListForCopy();
+            System.out.println("Реализовать глубокое копирование?");
+            processUserCopy(usersList, sc.nextBoolean());
+        }
         sc.close();
     }
 
-    private void processUserCopy(List<Long> ids, boolean isDeep) {
+    private void processUserCopy(List<User> usersList, boolean isDeep) {
         System.out.println(isDeep ? "DEEP COPY" : "SHALLOW COPY");
+
+        List<Long> ids = usersList.stream().map(User::getUserId).toList();
         long id = ids.get(new Random().nextInt(ids.size()));
 
         User original = getUserById(id);
@@ -103,7 +105,19 @@ public class UserProcess {
         System.out.println("----------");
     }
 
-    private List<User> fillUsersList() {
+    private List<User> fillUsersListForCopy() {
+        User tom = new User("Tom", "tom@mail.com");
+        User jerry = new User("Jerry", "jerry@mail.com");
+        User tomEnemy = new User("Bulldog", "bulldog@mail.com");
+        User housewife = new User("Housewife", "housewife@mail.com");
+        addFriendsToUser(tom, jerry, housewife);
+        addFriendsToUser(jerry, tom, tomEnemy);
+        addFriendsToUser(tomEnemy, housewife);
+        addFriendsToUser(housewife, tomEnemy);
+        return new ArrayList<>(Arrays.asList(tom, jerry, tomEnemy, housewife));
+    }
+
+    private List<User> fillUsersListForCompare() {
         User tom1 = new User("Tom", "tom@mail.com");
         User tom2 = cloneUser(tom1);
         User jerry = new User("Jerry", "jerry@mail.com");
@@ -113,9 +127,6 @@ public class UserProcess {
         User housewife = deepCloneUser(tomEnemy);
         housewife.setUserName("Housewife");
         housewife.setUserEmail("housewife@mail.com");
-        addFriendsToUser(tom1, jerry, housewife);
-        addFriendsToUser(jerry, tom1, tomEnemy);
-        addFriendsToUser(housewife, tomEnemy);
         return new ArrayList<>(Arrays.asList(tom1, tom2, jerry, tomAndJerry, jerryAndTom, tomEnemy, housewife));
     }
 
