@@ -16,21 +16,7 @@ public class PersonForDeepCopy implements Cloneable {
         this.address = address;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
+    //    GETTERS AND SETTERS
 
     public AddressForDeepCopy getAddress() {
         return address;
@@ -41,7 +27,7 @@ public class PersonForDeepCopy implements Cloneable {
     }
 
     @Override
-    protected Object clone() throws CloneNotSupportedException {
+    public Object clone() throws CloneNotSupportedException {
         PersonForDeepCopy cloned = (PersonForDeepCopy) super.clone();
 //        Deep copy of address:
         cloned.setAddress((AddressForDeepCopy) address.clone());

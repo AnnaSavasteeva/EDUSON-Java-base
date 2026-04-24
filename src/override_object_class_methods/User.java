@@ -41,6 +41,11 @@ public class User implements Cloneable {
     }
 
     @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
+    @Override
     public String toString() {
         return "User{" +
                 "userId=" + userId +
@@ -59,11 +64,6 @@ public class User implements Cloneable {
     @Override
     public int hashCode() {
         return Objects.hash(userId, userName, userEmail);
-    }
-
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
     }
 
     private long generateUserId() {
