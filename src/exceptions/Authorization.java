@@ -23,10 +23,7 @@ public class Authorization {
 
     private static void printException(RuntimeException ex) {
         System.out.printf(ANSI_RED + """
-                ----------
-                Exception is occurred: %s
-                Message: [%s]
-                ----------%n""" + ANSI_RESET, ex, ex.getMessage());
+                Exception is occurred: %s%n""" + ANSI_RESET, ex);
     }
 
     private static boolean isPasswordConfirmed(String password, String confirmPassword) throws WrongPasswordException {
