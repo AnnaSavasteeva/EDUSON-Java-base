@@ -8,40 +8,38 @@ import java.util.*;
  */
 public class UserProcess {
 
-    private List<User> usersList = new ArrayList<>();
-
     public void processUserTasks() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Сравнить пользователей?");
         if (sc.nextBoolean()) {
-            usersList = fillUsersListForCompare();
-            compareUsers(usersList);
+            List<User> usersForCompare = createUsersListForCompare();
+            compareUsers(usersForCompare);
             System.out.println("----------");
             System.out.println("----------");
         }
         System.out.println("Вполнить копирование?");
         if (sc.nextBoolean()) {
-            usersList = fillUsersListForCopy();
-            List<Long> ids = usersList.stream().map(User::getUserId).toList();
+            List<User> usersForCopy = createUsersListForCopy();
+            List<Long> ids = usersForCopy.stream().map(User::getUserId).toList();
             long id = ids.get(new Random().nextInt(ids.size()));
             System.out.println("Реализовать глубокое копирование?");
-            processUserCopy(id, sc.nextBoolean());
+            processUserCopy(usersForCopy, id, sc.nextBoolean());
         }
         sc.close();
     }
 
-    private void processUserCopy(long userId, boolean isDeep) {
+    private void processUserCopy(List<User> usersList, long userId, boolean isDeep) {
         System.out.println(isDeep ? "DEEP COPY" : "SHALLOW COPY");
 
-        User original = getUserById(userId);
+        User original = getUserById(usersList, userId);
         printOriginalUserData(original);
 
-        User cloned = copyUserById(userId, isDeep);
+        User cloned = copyUserById(usersList, userId, isDeep);
         printClonedUserData(cloned);
 
         String newLocation = "NEW LOCATION";
-        cloned.getLocation().setCity(newLocation);
         System.out.println("Поменяли локацию у копии на " + newLocation);
+        cloned.getLocation().setCity(newLocation);
 
         var clonedFriend = cloned.getUserFriends().get(0);
         String newName = "NEW NAME";
@@ -67,37 +65,20 @@ public class UserProcess {
         System.out.println("---");
     }
 
-    private User copyUserById(long id, boolean isDeepCopy) {
-        User userById = getUserById(id);
+    private User copyUserById(List<User> usersList, long id, boolean isDeepCopy) {
+        User userById = getUserById(usersList, id);
         if (!isDeepCopy) return cloneUser(userById);
         return deepCloneUser(userById);
     }
 
-    private User getUserById(long id) {
+    private User getUserById(List<User> usersList, long id) {
         return usersList.stream()
                 .filter(user -> user.getUserId() == id)
                 .findFirst()
                 .orElseThrow(() -> new AssertionError("User wasn't found with id: " + id));
     }
 
-    private void compareUsers(List<User> usersList) {
-        System.out.println("----------");
-        System.out.println("Сравниваем пользователей: ");
-        for (int i = 0; i < usersList.size() - 1; i++) {
-            var currentUser = usersList.get(i);
-            var nextUser = usersList.get(i + 1);
-            String areEqual = currentUser.equals(nextUser) ?
-                    "Это один и тот же пользователь." :
-                    "Это разные пользователи.";
-            System.out.println(currentUser);
-            System.out.println(nextUser);
-            System.out.println(areEqual);
-            if (i != usersList.size() - 2) System.out.println("---");
-        }
-        System.out.println("----------");
-    }
-
-    private List<User> fillUsersListForCopy() {
+    private List<User> createUsersListForCopy() {
         User tom = new User("Tom", "tom@mail.com");
         User jerry = new User("Jerry", "jerry@mail.com");
         User tomEnemy = new User("Bulldog", "bulldog@mail.com");
@@ -115,7 +96,24 @@ public class UserProcess {
         }
     }
 
-    private List<User> fillUsersListForCompare() {
+    private void compareUsers(List<User> usersList) {
+        System.out.println("----------");
+        System.out.println("Сравниваем пользователей: ");
+        for (int i = 0; i < usersList.size() - 1; i++) {
+            var currentUser = usersList.get(i);
+            var nextUser = usersList.get(i + 1);
+            String infoAboutEquality = currentUser.equals(nextUser) ?
+                    "Это один и тот же пользователь." :
+                    "Это разные пользователи.";
+            System.out.println(currentUser);
+            System.out.println(nextUser);
+            System.out.println(infoAboutEquality);
+            if (i != usersList.size() - 2) System.out.println("---");
+        }
+        System.out.println("----------");
+    }
+
+    private List<User> createUsersListForCompare() {
         User tom1 = new User("Tom", "tom@mail.com");
         User tom2 = cloneUser(tom1);
         User jerry = new User("Jerry", "jerry@mail.com");
@@ -131,6 +129,7 @@ public class UserProcess {
     private User deepCloneUser(User user) {
             return new User(user);
     }
+
     private User cloneUser(User user) {
         try {
             return (User) user.clone();
