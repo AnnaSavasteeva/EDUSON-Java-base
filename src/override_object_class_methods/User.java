@@ -27,12 +27,19 @@ public class User implements Cloneable {
         this.location = new Address("London");
     }
 
+//    Глубокое конирование через конструктор копирования
     public User(User other) {
         this.userId = other.getUserId();
         this.userName = other.getUserName();
         this.userEmail = other.getUserEmail();
         this.userFriends = getDeepCopyOfUserFriends(other.getUserFriends());
         this.location = new Address(other.getLocation().getCity());
+    }
+
+//    Поверхностное клонирование
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
     public long getUserId() {
@@ -65,11 +72,6 @@ public class User implements Cloneable {
 
     public void addFriend(User friend) {
         this.userFriends.add(friend);
-    }
-
-    @Override
-    public Object clone() throws CloneNotSupportedException {
-        return super.clone();
     }
 
     @Override
