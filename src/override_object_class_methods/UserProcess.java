@@ -115,12 +115,12 @@ public class UserProcess {
 
     private List<User> createUsersListForCompare() {
         User tom1 = new User("Tom", "tom@mail.com");
-        User tom2 = cloneUser(tom1);
+        User tom2 = cloneUser(tom1); // такой же объект
         User jerry = new User("Jerry", "jerry@mail.com");
-        User tomAndJerry = new User("Tom", "jerry@mail.com");
-        User jerryAndTom = new User("Jerry", "tom@mail.com");
+        User tomAndJerry = new User("Tom", "jerry@mail.com"); // одинаковый email с jerry
+        User jerryAndTom = new User("Jerry", "tom@mail.com"); // одинаковый email с tom1 и tom2
         User tomEnemy = new User("Bulldog", "bulldog@mail.com");
-        User housewife = deepCloneUser(tomEnemy);
+        User housewife = deepCloneUser(tomEnemy); // deep copy + тот же id, что и у tomEnemy
         housewife.setUserName("Housewife");
         housewife.setUserEmail("housewife@mail.com");
         return new ArrayList<>(Arrays.asList(tom1, tom2, jerry, tomAndJerry, jerryAndTom, tomEnemy, housewife));
