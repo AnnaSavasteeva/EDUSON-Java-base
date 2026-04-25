@@ -1,9 +1,12 @@
-import base.strings.RegEx;
+import exceptions.Authorization;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        new RegEx().runHomework();
+        String log = "login678911234567892";
+        String pass = "password1";
+        String conformPass = "password1";
+        System.out.println(Authorization.checkUserCredentials(log, pass, conformPass));
     }
 }
