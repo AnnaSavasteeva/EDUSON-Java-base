@@ -8,14 +8,25 @@ import static exceptions.AuthErrors.*;
  */
 public class Authorization {
 
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_RESET = "\u001B[0m";
+
     public static boolean checkUserCredentials(String login, String password, String confirmPassword) {
         boolean isValid = false;
         try {
             isValid = isLoginValid(login) && isPasswordValid(password) && isPasswordConfirmed(password, confirmPassword);
         } catch (WrongLoginException | WrongPasswordException ex) {
-            System.out.println(ex.getMessage());
+            printException(ex);
         }
         return isValid;
+    }
+
+    private static void printException(RuntimeException ex) {
+        System.out.printf(ANSI_RED + """
+                ----------
+                Exception is occurred: %s
+                Message: [%s]
+                ----------%n""" + ANSI_RESET, ex, ex.getMessage());
     }
 
     private static boolean isPasswordConfirmed(String password, String confirmPassword) throws WrongPasswordException {
