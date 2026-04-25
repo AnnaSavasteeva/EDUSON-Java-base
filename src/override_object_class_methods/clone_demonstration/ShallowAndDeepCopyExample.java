@@ -20,16 +20,16 @@ public class ShallowAndDeepCopyExample {
 
     private void processDeepCopyDemonstration() {
         try {
-            Address address = new Address("Wonderland");
-            PersonForDeepCopy original = new PersonForDeepCopy("White Rabbit", 3, address);
+            PersonForDeepCopy original = new PersonForDeepCopy("White Rabbit", 3, new Address("Wonderland"));
             PersonForDeepCopy cloned = (PersonForDeepCopy) original.clone();
             System.out.println("Original for deep copy: " + original);
             System.out.println("Cloned for deep copy: " + cloned);
 
 //            Modify the address in the cloned object
-            cloned.getAddress().setCity("Sea of Tears");
+            String newAddress = "Sea of Tears";
+            cloned.getAddress().setCity(newAddress);
 
-            System.out.println("--- The address in the cloned object was modified to 'Sea of Tears':");
+            System.out.printf("--- The address in the cloned object was modified to '%s':%n", newAddress);
             System.out.println("Original for deep copy: " + original);
             System.out.println("Cloned for deep copy: " + cloned);
         } catch (CloneNotSupportedException e) {
@@ -39,16 +39,16 @@ public class ShallowAndDeepCopyExample {
 
     private void processShallowCopyDemonstration() {
         try {
-            Address address = new Address("New York");
-            PersonForShallowCopy original = new PersonForShallowCopy("Alice", 10, address);
+            PersonForShallowCopy original = new PersonForShallowCopy("Alice", 10, new Address("New York"));
             PersonForShallowCopy cloned = (PersonForShallowCopy) original.clone();
             System.out.println("Original for shallow copy: " + original);
             System.out.println("Cloned for shallow copy: " + cloned);
 
 //            Modify the address in the cloned object
-            cloned.getAddress().setCity("Los Angeles");
+            String newAddress = "Los Angeles";
+            cloned.getAddress().setCity(newAddress);
 
-            System.out.println("--- The address in the cloned object was modified to Los Angeles:");
+            System.out.printf("--- The address in the cloned object was modified to '%s':%n", newAddress);
             System.out.println("Original for shallow copy: " + original);
             System.out.println("Cloned for shallow copy: " + cloned);
         } catch (CloneNotSupportedException e) {
