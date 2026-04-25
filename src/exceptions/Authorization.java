@@ -1,5 +1,7 @@
 package exceptions;
 
+import static exceptions.AuthErrors.*;
+
 /**
  * @author annasavasteeva
  * @date 25.04.2026
@@ -7,24 +9,44 @@ package exceptions;
 public class Authorization {
 
     public static boolean checkUserCredentials(String login, String password, String confirmPassword) {
-        return isLoginValid(login) && isPasswordValid(password) && isPasswordConfirmed(password, confirmPassword);
+        boolean isValid = false;
+        try {
+            isValid = isLoginValid(login) && isPasswordValid(password) && isPasswordConfirmed(password, confirmPassword);
+        } catch (WrongLoginException | WrongPasswordException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return isValid;
     }
 
-    private static boolean isPasswordConfirmed(String password, String confirmPassword) {
-        return password.equals(confirmPassword);
+    private static boolean isPasswordConfirmed(String password, String confirmPassword) throws WrongPasswordException {
+        if (!password.equals(confirmPassword)) throw new WrongPasswordException(PASS_NOT_CONFIRMED.getMessage());
+        return true;
     }
 
-    private static boolean isPasswordValid(String password) {
-        return isCredentialValid(password)
-                && !password.chars().allMatch(Character::isDigit)
-                && password.chars().anyMatch(Character::isDigit);
+    private static boolean isPasswordValid(String password) throws WrongPasswordException {
+        if (!isLengthValid(password)) throw new WrongPasswordException(LENGTH_ERR.getMessage());
+        if (isContainSpaces(password)) throw new WrongPasswordException(SPACES_ERR.getMessage());
+        if (!isContainDigits(password)) throw new WrongPasswordException(CONTENT_ERR.getMessage());
+        return true;
     }
 
-    private static boolean isLoginValid(String login) {
-        return isCredentialValid(login);
+    private static boolean isLoginValid(String login) throws WrongLoginException {
+        boolean isLengthValid = isLengthValid(login);
+        boolean isContainSpaces = isContainSpaces(login);
+        if (!isLengthValid) throw new WrongLoginException(LENGTH_ERR.getMessage());
+        if (isContainSpaces) throw new WrongLoginException(SPACES_ERR.getMessage());
+        return true;
     }
 
-    private static boolean isCredentialValid(String credential) {
-        return (credential.length() < 20) && !credential.matches(".*\\s.*");
+    private static boolean isContainDigits(String credential) {
+        return !credential.chars().allMatch(Character::isDigit) && credential.chars().anyMatch(Character::isDigit);
+    }
+
+    private static boolean isContainSpaces(String credential) {
+        return credential.matches(".*\\s.*");
+    }
+
+    private static boolean isLengthValid(String credential) {
+        return credential.length() < 20;
     }
 }
