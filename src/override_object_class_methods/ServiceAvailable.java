@@ -51,7 +51,6 @@ public class ServiceAvailable implements ServiceInfo {
         if (obj == null) return false;
 
         if (!(obj instanceof ServiceInfo other)) return false;
-
         return this.code.equals(other.getCode())
                 && this.name.equals(other.getName())
                 && this.cost.compareTo(other.getCost()) == 0;

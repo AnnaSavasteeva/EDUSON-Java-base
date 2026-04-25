@@ -14,9 +14,9 @@ public class GenericsAndEqualsByInterfaceExample {
     private static final long DURATION = 30L;
 
     public void processExample() {
-        List<ServiceAvailable> availableServicesList = getAvailableServicesList();
-        List<ServiceConnected> connectedServicesList = getConnectedServicesList(availableServicesList);
-        List<String> servicesCodesList = getServicesCodesList(availableServicesList, connectedServicesList);
+        List<ServiceAvailable> availableServicesList = createAvailableServicesList();
+        List<ServiceConnected> connectedServicesList = createConnectedServicesList(availableServicesList);
+        List<String> servicesCodesList = createServicesCodesList(availableServicesList, connectedServicesList);
 
         List<ServiceAvailable> availableServicesFound = findServicesByCodeList(availableServicesList, servicesCodesList);
         List<ServiceConnected> connectedServicesFound = findServicesByCodeList(connectedServicesList, servicesCodesList);
@@ -52,7 +52,7 @@ public class GenericsAndEqualsByInterfaceExample {
                 .orElse(null);
     }
 
-    private List<String> getServicesCodesList(List<ServiceAvailable> availableServicesList, List<ServiceConnected> connectedServicesList) {
+    private List<String> createServicesCodesList(List<ServiceAvailable> availableServicesList, List<ServiceConnected> connectedServicesList) {
         String serviceNotInDemand = availableServicesList.get(3).getCode();
         String actualCode = connectedServicesList.get(0).getCode();
         String archivedCode = connectedServicesList.get(connectedServicesList.size() - 1).getCode();
@@ -60,7 +60,7 @@ public class GenericsAndEqualsByInterfaceExample {
         return new ArrayList<>(List.of(serviceNotInDemand, actualCode, archivedCode, unknownCode));
     }
 
-    private List<ServiceConnected> getConnectedServicesList(List<ServiceAvailable> availableServices) {
+    private List<ServiceConnected> createConnectedServicesList(List<ServiceAvailable> availableServices) {
         List<ServiceConnected> connectedServicesList = new ArrayList<>();
         for (int i = 0; i < availableServices.size(); i+=2) {
             connectedServicesList.add(new ServiceConnected(availableServices.get(i)));
@@ -69,7 +69,7 @@ public class GenericsAndEqualsByInterfaceExample {
         return connectedServicesList;
     }
 
-    private List<ServiceAvailable> getAvailableServicesList() {
+    private List<ServiceAvailable> createAvailableServicesList() {
         List<ServiceAvailable> availableServicesList = new ArrayList<>();
         long baseCost = 1000L;
         for (int i = 0; i < 10; i++) {
