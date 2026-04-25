@@ -22,22 +22,21 @@ public class UserProcess {
         System.out.println("Вполнить копирование?");
         if (sc.nextBoolean()) {
             usersList = fillUsersListForCopy();
+            List<Long> ids = usersList.stream().map(User::getUserId).toList();
+            long id = ids.get(new Random().nextInt(ids.size()));
             System.out.println("Реализовать глубокое копирование?");
-            processUserCopy(usersList, sc.nextBoolean());
+            processUserCopy(id, sc.nextBoolean());
         }
         sc.close();
     }
 
-    private void processUserCopy(List<User> usersList, boolean isDeep) {
+    private void processUserCopy(long userId, boolean isDeep) {
         System.out.println(isDeep ? "DEEP COPY" : "SHALLOW COPY");
 
-        List<Long> ids = usersList.stream().map(User::getUserId).toList();
-        long id = ids.get(new Random().nextInt(ids.size()));
-
-        User original = getUserById(id);
+        User original = getUserById(userId);
         printOriginalUserData(original);
 
-        User cloned = copyUserById(id, isDeep);
+        User cloned = copyUserById(userId, isDeep);
         printClonedUserData(cloned);
 
         String newLocation = "NEW LOCATION";
@@ -110,6 +109,12 @@ public class UserProcess {
         return new ArrayList<>(Arrays.asList(tom, jerry, tomEnemy, housewife));
     }
 
+    private void addFriendsToUser(User user, User... friends) {
+        for (User friend : friends) {
+            user.addFriend(friend);
+        }
+    }
+
     private List<User> fillUsersListForCompare() {
         User tom1 = new User("Tom", "tom@mail.com");
         User tom2 = cloneUser(tom1);
@@ -126,7 +131,6 @@ public class UserProcess {
     private User deepCloneUser(User user) {
             return new User(user);
     }
-
     private User cloneUser(User user) {
         try {
             return (User) user.clone();
@@ -135,9 +139,4 @@ public class UserProcess {
         }
     }
 
-    private void addFriendsToUser(User user, User... friends) {
-        for (User friend : friends) {
-            user.addFriend(friend);
-        }
-    }
 }
