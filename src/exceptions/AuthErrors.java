@@ -9,7 +9,8 @@ public enum AuthErrors {
 
     LENGTH_ERR("Length must be less than 20 characters"),
     SPACES_ERR("Spaces are not allowed"),
-    CONTENT_ERR("Must contain at least one digit");
+    CONTENT_ERR("Must contain at least one digit"),
+    PASS_NOT_CONFIRMED("NOT EQUAL PASSWORDS");
 
     AuthErrors(String message) {
         this.message = message;
