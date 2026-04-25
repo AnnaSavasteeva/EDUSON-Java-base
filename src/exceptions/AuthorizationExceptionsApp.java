@@ -20,6 +20,7 @@ public class AuthorizationExceptionsApp {
     public void runApp() {
         checkCredentialsAndPrintResult(getValidCredentials());
         checkCredentialsAndPrintResult(getCredentialsWithInvalidLoginLength());
+        checkCredentialsAndPrintResult(getCredentialsForLoginWithSpaces());
     }
 
     private void checkCredentialsAndPrintResult(Map<String, String> creds) {
@@ -30,6 +31,11 @@ public class AuthorizationExceptionsApp {
         System.out.printf(isCredsOk ? "---%nGOOD credentials%n" : "---%nBAD credentials%n");
         System.out.println("--------------------");
         System.out.println("--------------------");
+    }
+
+    private Map<String, String> getCredentialsForLoginWithSpaces() {
+        String invalidLogin = GOOD_LOGIN + " l og";
+        return createCredentials(invalidLogin, GOOD_PASSWORD, GOOD_PASSWORD);
     }
 
     private Map<String, String> getCredentialsWithInvalidLoginLength() {

@@ -39,10 +39,8 @@ public class Authorization {
     }
 
     private static boolean isLoginValid(String login) throws WrongLoginException {
-        boolean isLengthValid = isLengthValid(login);
-        boolean isContainSpaces = isContainSpaces(login);
-        if (!isLengthValid) throw new WrongLoginException(LENGTH_ERR.getMessage());
-        if (isContainSpaces) throw new WrongLoginException(SPACES_ERR.getMessage());
+        if (!isLengthValid(login)) throw new WrongLoginException(LENGTH_ERR.getMessage());
+        if (isContainSpaces(login)) throw new WrongLoginException(SPACES_ERR.getMessage());
         return true;
     }
 
@@ -51,7 +49,7 @@ public class Authorization {
     }
 
     private static boolean isContainSpaces(String credential) {
-        return credential.matches(".*\\s.*");
+        return credential.contains(" ");
     }
 
     private static boolean isLengthValid(String credential) {
