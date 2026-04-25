@@ -1,9 +1,9 @@
-import base.strings.StringsOperations;
+import base.strings.RegEx;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        new StringsOperations().runHomework();
+        new RegEx().runHomework();
     }
 }
