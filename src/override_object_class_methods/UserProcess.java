@@ -37,8 +37,7 @@ public class UserProcess {
         User original = getUserById(id);
         printOriginalUserData(original);
 
-//        User cloned = copyUserById(id, isDeep);
-        User cloned = copyUser(original, isDeep);
+        User cloned = copyUserById(id, isDeep);
         printClonedUserData(cloned);
 
         String newLocation = "NEW LOCATION";
@@ -67,11 +66,6 @@ public class UserProcess {
         System.out.println("Друзья оригинала: ");
         user.getUserFriends().forEach(System.out::println);
         System.out.println("---");
-    }
-
-    private User copyUser(User user, boolean isDeepCopy) {
-        if (!isDeepCopy) return cloneUser(user);
-        return deepCloneUser(user);
     }
 
     private User copyUserById(long id, boolean isDeepCopy) {
