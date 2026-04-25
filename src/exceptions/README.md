@@ -1,8 +1,8 @@
 # Exceptions
 
-## ...
+## AuthorizationExceptionsApp
 
-... — точка входа для домашней работы по теме исключений.
+AuthorizationExceptionsApp — точка входа для домашней работы по теме исключений.
 
 **Задача 1**
 
