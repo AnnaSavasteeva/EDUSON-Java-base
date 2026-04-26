@@ -20,7 +20,10 @@ public class AuthorizationExceptionsApp {
     public void runApp() {
         checkCredentialsAndPrintResult(getValidCredentials());
         checkCredentialsAndPrintResult(getCredentialsWithInvalidLoginLength());
-        checkCredentialsAndPrintResult(getCredentialsForLoginWithSpaces());
+        checkCredentialsAndPrintResult(getCredentialsForPasswordWithSpaces());
+        checkCredentialsAndPrintResult(getCredentialsForPasswordWithoutDigits());
+        checkCredentialsAndPrintResult(getCredentialsForPasswordWithOnlyDigits());
+        checkCredentialsAndPrintResult(getCredentialsForUnconfirmedPassword());
     }
 
     private void checkCredentialsAndPrintResult(Map<String, String> creds) {
@@ -33,9 +36,23 @@ public class AuthorizationExceptionsApp {
         System.out.println("--------------------");
     }
 
-    private Map<String, String> getCredentialsForLoginWithSpaces() {
-        String invalidLogin = GOOD_LOGIN + " l og";
-        return createCredentials(invalidLogin, GOOD_PASSWORD, GOOD_PASSWORD);
+    private Map<String, String> getCredentialsForUnconfirmedPassword() {
+        return createCredentials(GOOD_LOGIN, GOOD_PASSWORD, "SomeOtherPass1");
+    }
+
+    private Map<String, String> getCredentialsForPasswordWithOnlyDigits() {
+        String invalidPass = "123456789";
+        return createCredentials(GOOD_LOGIN, invalidPass, invalidPass);
+    }
+
+    private Map<String, String> getCredentialsForPasswordWithoutDigits() {
+        String invalidPass = "passwordNoDigits";
+        return createCredentials(GOOD_LOGIN, invalidPass, invalidPass);
+    }
+
+    private Map<String, String> getCredentialsForPasswordWithSpaces() {
+        String invalidPass = GOOD_PASSWORD + " s_p";
+        return createCredentials(GOOD_LOGIN, invalidPass, invalidPass);
     }
 
     private Map<String, String> getCredentialsWithInvalidLoginLength() {
