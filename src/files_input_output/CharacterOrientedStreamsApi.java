@@ -39,5 +39,4 @@ public class CharacterOrientedStreamsApi {
             e.printStackTrace() ;
         }
     }
-
 }
