@@ -32,14 +32,14 @@ public class Authorization {
     }
 
     private static boolean isPasswordValid(String password) throws WrongPasswordException {
-        if (!isLengthValid(password)) throw new WrongPasswordException(LENGTH_ERR.getMessage());
+        if (isLengthTooLong(password)) throw new WrongPasswordException(LENGTH_ERR.getMessage());
         if (isContainSpaces(password)) throw new WrongPasswordException(SPACES_ERR.getMessage());
         if (!isContainDigits(password)) throw new WrongPasswordException(CONTENT_ERR.getMessage());
         return true;
     }
 
     private static boolean isLoginValid(String login) throws WrongLoginException {
-        if (!isLengthValid(login)) throw new WrongLoginException(LENGTH_ERR.getMessage());
+        if (isLengthTooLong(login)) throw new WrongLoginException(LENGTH_ERR.getMessage());
         if (isContainSpaces(login)) throw new WrongLoginException(SPACES_ERR.getMessage());
         return true;
     }
@@ -52,7 +52,7 @@ public class Authorization {
         return credential.contains(" ");
     }
 
-    private static boolean isLengthValid(String credential) {
-        return credential.length() < 20;
+    private static boolean isLengthTooLong(String credential) {
+        return credential.length() >= 20;
     }
 }

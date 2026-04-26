@@ -20,5 +20,5 @@ public enum AuthErrors {
         return message;
     }
 
-    private String message;
+    private final String message;
 }
