@@ -22,3 +22,5 @@ WrongPasswordException и WrongLoginException — пользовательски
 
 **Задача '*'**
 Написать try/catch/finally, в котором finally вызван не будет.
+
+Про способы избегания finally (не это не рекомендуется делать): https://chat.deepseek.com/share/0xgkgwf4kclyo43e32
