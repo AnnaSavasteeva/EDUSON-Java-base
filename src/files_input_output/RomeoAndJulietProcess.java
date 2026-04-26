@@ -18,6 +18,8 @@ public class RomeoAndJulietProcess {
 
     public void runApp() {
         File romeoJulietFile = new File("resources/files/romeo-and-juliet.txt");
+        File longestWordFile = new File("resources/files/longest-word-from-romeo-and-juliet.txt");
+        List<String> romeoJulietWords = new ArrayList<>();
 
         try (FileReader fr = new FileReader(romeoJulietFile.getPath())) {
             int i;
@@ -26,13 +28,26 @@ public class RomeoAndJulietProcess {
                 romeoJulietChars.add((char) i);
             }
             String romeoJulietString = romeoJulietChars.stream().map(String::valueOf).collect(Collectors.joining());
-            List<String> romeoJulietWords = Arrays.asList(romeoJulietString.split("\\s+"));
-            String longestWord = romeoJulietWords.stream()
-                    .max(Comparator.comparing(String::length))
-                    .orElseThrow(RuntimeException::new);
-            System.out.printf("The longest word in 'Romeo and Juliet is '%s'", longestWord);
+            romeoJulietWords = Arrays.asList(romeoJulietString.split("\\s+"));
         } catch (IOException e) {
             e.printStackTrace() ;
         }
+
+        try (FileWriter fw = new FileWriter(longestWordFile.getPath())) {
+            String longestWord = getLongestWord(romeoJulietWords);
+            fw.write(longestWord);
+            fw.flush();
+            System.out.printf("The longest word in 'Romeo and Juliet is '%s'.%nThis word was written to file %s",
+                    longestWord,
+                    longestWordFile.getName());
+        } catch (Exception e) {
+            e.printStackTrace() ;
+        }
+    }
+
+    private String getLongestWord(List<String> words) {
+        return words.stream()
+                .max(Comparator.comparing(String::length))
+                .orElseThrow(RuntimeException::new);
     }
 }
