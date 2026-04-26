@@ -24,3 +24,6 @@ WrongPasswordException и WrongLoginException — пользовательски
 Написать try/catch/finally, в котором finally вызван не будет.
 
 Про способы избегания finally (не это не рекомендуется делать): https://chat.deepseek.com/share/0xgkgwf4kclyo43e32
+
+В целом, System.exit() или Runtime.getRuntime().halt() — это единственные легальные способы избежать исполнения блока finally. 
+В реальной практике лучше не избегать finally, но для общего развития по Java знать эти способы стоит.
