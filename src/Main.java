@@ -1,9 +1,10 @@
-import base.strings.RegEx;
+import exceptions.AuthorizationExceptionsApp;
+import exceptions.AvoidFinallyBlockApp;
 
 public class Main {
 
     public static void main(String[] args) {
-
-        new RegEx().runHomework();
+        new AuthorizationExceptionsApp().runApp();
+        new AvoidFinallyBlockApp().runApp();
     }
 }
