@@ -15,17 +15,17 @@ import java.util.stream.Collectors;
 public class ByteOrientedStreamsApp {
 
     public void runApp() {
-        String text1 = "Hello" ;
-        String text2 = " world!" ;
+        String text1 = "Hello";
+        String text2 = " world!";
         File dir = new File("resources/files");
         File file1 = new File(dir, "Hello.txt");
 
         try (FileOutputStream fos = new FileOutputStream(file1.getPath())) {
-            byte[] buffer1 = text1.getBytes() ;
-            fos.write(buffer1 , 0, buffer1.length);
+            byte[] buffer1 = text1.getBytes();
+            fos.write(buffer1, 0, buffer1.length);
             System.out.println( "Text 1 has been written" );
-            byte[] buffer2 = text2.getBytes() ;
-            fos.write(buffer2 , 0, buffer2.length);
+            byte[] buffer2 = text2.getBytes();
+            fos.write(buffer2, 0, buffer2.length);
             System.out.println( "Text 2 has been written" );
         } catch (IOException ex) {
             System.out.println(ex.getMessage()) ;

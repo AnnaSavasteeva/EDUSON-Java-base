@@ -17,9 +17,9 @@ public class CharacterOrientedStreamsApi {
         String text1 = "Hello" ;
         String text2 = " world!" ;
         File dir = new File("resources/files");
-        File file1 = new File(dir, "Hello.txt");
+        File file = new File(dir, "Hello.txt");
 
-        try (FileWriter fw = new FileWriter(file1.getPath())) {
+        try (FileWriter fw = new FileWriter(file.getPath())) {
             fw.write(text1);
             fw.write(text2);
             fw.flush() ;
@@ -27,7 +27,7 @@ public class CharacterOrientedStreamsApi {
             e.printStackTrace() ;
         }
 
-        try (FileReader fr = new FileReader(file1.getPath())) {
+        try (FileReader fr = new FileReader(file.getPath())) {
             int i;
             List<Character> chars = new ArrayList<>();
             while ((i = fr.read()) != -1) {
