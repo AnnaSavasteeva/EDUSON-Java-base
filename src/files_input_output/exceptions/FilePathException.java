@@ -7,7 +7,7 @@ package files_input_output.exceptions;
 public class FilePathException extends RuntimeException {
 
     public FilePathException() {
-        super("Путь к файлу содержит ошибки");
+        super("Неверный формат пути");
     }
 
     @Override

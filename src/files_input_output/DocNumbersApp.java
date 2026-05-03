@@ -3,6 +3,9 @@ package files_input_output;
 import files_input_output.exceptions.FilePathException;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -16,7 +19,7 @@ public class DocNumbersApp {
         Scanner sc = new Scanner(System.in);
         File file = new File(getPathToFile(sc));
 
-//        TODO: Открыть поток для вычитки файла
+        try (FileReader fileReader = new FileReader(file.getPath())) {
 
 //        TODO: Проверять каждую строку на соответствие валидному номеру документа:
 //        - если номер валиден, записать в соответствующий файл-отчет
@@ -25,6 +28,11 @@ public class DocNumbersApp {
 //        - начинается с docnum или contract
 //        - содержит только буквы и цифры
 //        - длина == 15 символов
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
         sc.close();
     }
