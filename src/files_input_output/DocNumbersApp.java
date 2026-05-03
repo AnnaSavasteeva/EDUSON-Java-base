@@ -3,7 +3,6 @@ package files_input_output;
 import files_input_output.exceptions.FilePathException;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
