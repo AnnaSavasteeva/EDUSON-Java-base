@@ -6,7 +6,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 /**
  * @author annasavasteeva
@@ -15,26 +19,37 @@ import java.util.Scanner;
 public class DocNumbersApp {
 
     public void runApp() {
+        try (Scanner sc = new Scanner(System.in)) {
+            File file = new File(getPathToFile(sc));
+            List<Character> docNumbers = new ArrayList<>();
+            List<String> docNumbersList = new ArrayList<>();
 
-        Scanner sc = new Scanner(System.in);
-        File file = new File(getPathToFile(sc));
+//            TODO: вынести в метод
+            try (FileReader fr = new FileReader(file.getPath())) {
+                int i;
+                while ((i = fr.read()) != -1) {
+                    docNumbers.add((char) i);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-        try (FileReader fileReader = new FileReader(file.getPath())) {
+//            TODO: завершать приложение, если файл оказался пустым
+            docNumbers.isEmpty();
 
-//        TODO: Проверять каждую строку на соответствие валидному номеру документа:
-//        - если номер валиден, записать в соответствующий файл-отчет
-//        - если номер невалиден, записать в другой файл-отчет и добавить информацию, почему он невалиден
-//        Валидный номер:
+            String docNumbersString = docNumbers.stream().map(String::valueOf).collect(Collectors.joining());
+            docNumbersList = Arrays.asList(docNumbersString.split("\\r+"));
+            docNumbersList.forEach(docNumber -> {
+//        TODO: создать метод валидации номера документа:
 //        - начинается с docnum или contract
 //        - содержит только буквы и цифры
 //        - длина == 15 символов
+            });
 
-        } catch (IOException e) {
-            e.printStackTrace();
+//        TODO: если номер валиден, записать в соответствующий файл-отчет
+
+//        TODO: если номер невалиден, записать в другой файл-отчет и добавить информацию, почему он невалиден
         }
-
-
-        sc.close();
     }
 
     private String getPathToFile(Scanner sc) {
