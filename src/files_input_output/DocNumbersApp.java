@@ -1,6 +1,6 @@
 package files_input_output;
 
-import files_input_output.exceptions.FilePathException;
+import files_input_output.exceptions.EmptyFileException;
 
 import java.io.File;
 import java.io.FileReader;
@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+import static java.lang.String.format;
+
 /**
  * @author annasavasteeva
  * @date 03.05.2026
@@ -20,25 +22,14 @@ public class DocNumbersApp {
     public void runApp() {
         try (Scanner sc = new Scanner(System.in)) {
             File file = new File(getPathToFile(sc));
-            List<Character> docNumbers = new ArrayList<>();
-            List<String> docNumbersList = new ArrayList<>();
+            List<Character> docNumbersAsChars = extractCharsFromFile(file);
 
-//            TODO: вынести в метод
-            try (FileReader fr = new FileReader(file.getPath())) {
-                int i;
-                while ((i = fr.read()) != -1) {
-                    docNumbers.add((char) i);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            if (docNumbersAsChars.isEmpty()) throw new EmptyFileException();
 
-//            TODO: завершать приложение, если файл оказался пустым
-            docNumbers.isEmpty();
-
-            String docNumbersString = docNumbers.stream().map(String::valueOf).collect(Collectors.joining());
-            docNumbersList = Arrays.asList(docNumbersString.split("\\r+"));
-            docNumbersList.forEach(docNumber -> {
+            List<String> docNumbersAsStrings = new ArrayList<>();
+            String docNumbersString = docNumbersAsChars.stream().map(String::valueOf).collect(Collectors.joining());
+            docNumbersAsStrings = Arrays.asList(docNumbersString.split("\\r+"));
+            docNumbersAsStrings.forEach(docNumber -> {
 //        TODO: создать метод валидации номера документа:
 //        - начинается с docnum или contract
 //        - содержит только буквы и цифры
@@ -51,15 +42,29 @@ public class DocNumbersApp {
         }
     }
 
+    private List<Character> extractCharsFromFile(File file) {
+        List<Character> charsList = new ArrayList<>();
+        try (FileReader fr = new FileReader(file.getPath())) {
+            int i;
+            while ((i = fr.read()) != -1) {
+                charsList.add((char) i);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return charsList;
+    }
+
     private String getPathToFile(Scanner sc) {
         System.out.println("Укажите путь к файлу: ");
         String path = sc.nextLine();
-        if (!isPathValid(path)) throw new FilePathException();
+        if (!isPathValid(path)) {
+            throw new RuntimeException(format("Путь к файлу не может быть пустым и не должен содержать пробелы: [%s]", path));
+        }
         return path;
     }
 
     private boolean isPathValid(String filePath) {
-//        TODO: добавить проверку валидности символов в пути: буквы, косая черта, цифры?
-        return filePath != null && !filePath.trim().isEmpty();
+        return filePath != null && !filePath.trim().isEmpty() && !filePath.contains("\\s");
     }
 }
