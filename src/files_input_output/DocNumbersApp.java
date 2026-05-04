@@ -26,10 +26,11 @@ public class DocNumbersApp {
 
             if (docNumbersAsChars.isEmpty()) throw new EmptyFileException();
 
-            List<String> docNumbersAsStrings = new ArrayList<>();
             String docNumbersString = docNumbersAsChars.stream().map(String::valueOf).collect(Collectors.joining());
-            docNumbersAsStrings = Arrays.asList(docNumbersString.split("\\r+"));
+            List<String> docNumbersAsStrings = new ArrayList<>();
+            docNumbersAsStrings = Arrays.asList(docNumbersString.split("\n"));
             docNumbersAsStrings.forEach(docNumber -> {
+                System.out.println(docNumber);
 //        TODO: создать метод валидации номера документа:
 //        - начинается с docnum или contract
 //        - содержит только буквы и цифры
@@ -55,7 +56,7 @@ public class DocNumbersApp {
         return charsList;
     }
 
-    private String getPathToFile(Scanner sc) {
+    private String getPathToFile(Scanner sc) throws RuntimeException {
         System.out.println("Укажите путь к файлу: ");
         String path = sc.nextLine();
         if (!isPathValid(path)) {
@@ -65,6 +66,6 @@ public class DocNumbersApp {
     }
 
     private boolean isPathValid(String filePath) {
-        return filePath != null && !filePath.trim().isEmpty() && !filePath.contains("\\s");
+        return filePath != null && !filePath.contains(" ");
     }
 }
