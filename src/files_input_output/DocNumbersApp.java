@@ -27,10 +27,8 @@ public class DocNumbersApp {
             if (docNumbersAsChars.isEmpty()) throw new EmptyFileException();
 
             String docNumbersString = docNumbersAsChars.stream().map(String::valueOf).collect(Collectors.joining());
-            List<String> docNumbersAsStrings = new ArrayList<>();
-            docNumbersAsStrings = Arrays.asList(docNumbersString.split("\n"));
-            docNumbersAsStrings.forEach(docNumber -> {
-                System.out.println(docNumber);
+            List<String> docNumbersList = Arrays.asList(docNumbersString.split("\n"));
+            docNumbersList.forEach(docNumber -> {
 //        TODO: создать метод валидации номера документа:
 //        - начинается с docnum или contract
 //        - содержит только буквы и цифры
@@ -43,7 +41,7 @@ public class DocNumbersApp {
         }
     }
 
-    private List<Character> extractCharsFromFile(File file) {
+    private List<Character> extractCharsFromFile (File file) {
         List<Character> charsList = new ArrayList<>();
         try (FileReader fr = new FileReader(file.getPath())) {
             int i;
