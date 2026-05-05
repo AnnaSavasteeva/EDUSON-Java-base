@@ -43,7 +43,7 @@ public class DocNumbersApp {
                 StringBuilder numberProblems = new StringBuilder();
                 if (!isStartValid(docNumber)) numberProblems.append("- номер должен начинаться с 'docnum' или 'contract'");
                 if (!isLengthValid(docNumber)) numberProblems.append("- номер должен состоять из 15 символов");
-                if (!isContentValid(docNumber)) numberProblems.append("- номер должен состоять из только из букв и цифр");
+                if (!isContentValid(docNumber)) numberProblems.append("- номер должен состоять только из букв и цифр");
 
                 if (!numberProblems.isEmpty()) {
                     String entry = format("[%s]:", docNumber);
