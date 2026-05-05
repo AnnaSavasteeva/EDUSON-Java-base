@@ -25,6 +25,9 @@ public class DocNumbersApp {
     private static final String INVALID_DOC_NUMBERS_REPORT = "invalid_doc_nums.txt";
 
     public void runApp() {
+//        TODO: обрабатывать csv-файл
+//        TODO: создавать файлы с уникальными именами (см. ИИ)
+
         try (Scanner sc = new Scanner(System.in)) {
             File fileToRead = new File(getPathToFile(sc));
             List<Character> docNumbersAsChars = extractCharsFromFile(fileToRead);
