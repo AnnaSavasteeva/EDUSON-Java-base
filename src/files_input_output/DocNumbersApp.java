@@ -47,11 +47,10 @@ public class DocNumbersApp {
                 if (!isContentValid(docNumber)) numberProblems.append("- номер должен состоять только из букв и цифр\n");
 
                 if (!numberProblems.isEmpty()) {
-                    String entry = format("[%s]:\n", docNumber);
-                    numberProblems.insert(0, entry);
+                    numberProblems.insert(0, format("[%s]:\n", docNumber));
                     invalidList.add(numberProblems.toString());
                 } else {
-                    validList.add(docNumber);
+                    validList.add(format("[%s]\n", docNumber));
                 }
             });
             writeStringsToFile(invalid_numbers, invalidList);
