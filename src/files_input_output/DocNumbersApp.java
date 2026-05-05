@@ -38,27 +38,32 @@ public class DocNumbersApp {
 
             String docNumbersString = docNumbersAsChars.stream().map(String::valueOf).collect(Collectors.joining());
             List<String> docNumbersList = Arrays.asList(docNumbersString.split("\n"));
+            List<String> validList = new ArrayList<>();
+            List<String> invalidList = new ArrayList<>();
             docNumbersList.forEach(docNumber -> {
-//        TODO: если номер невалиден, добавить информацию, почему он невалиден
                 StringBuilder numberProblems = new StringBuilder();
-                if (!isStartValid(docNumber)) numberProblems.append("- номер должен начинаться с 'docnum' или 'contract'");
-                if (!isLengthValid(docNumber)) numberProblems.append("- номер должен состоять из 15 символов");
-                if (!isContentValid(docNumber)) numberProblems.append("- номер должен состоять только из букв и цифр");
+                if (!isStartValid(docNumber)) numberProblems.append("- номер должен начинаться с 'docnum' или 'contract'\n");
+                if (!isLengthValid(docNumber)) numberProblems.append("- номер должен состоять из 15 символов\n");
+                if (!isContentValid(docNumber)) numberProblems.append("- номер должен состоять только из букв и цифр\n");
 
                 if (!numberProblems.isEmpty()) {
-                    String entry = format("[%s]:", docNumber);
+                    String entry = format("[%s]:\n", docNumber);
                     numberProblems.insert(0, entry);
-                    writeStringToFile(invalid_numbers, numberProblems.toString());
+                    invalidList.add(numberProblems.toString());
                 } else {
-                    writeStringToFile(valid_numbers, docNumber);
+                    validList.add(docNumber);
                 }
             });
+            writeStringsToFile(invalid_numbers, invalidList);
+            writeStringsToFile(valid_numbers, validList);
         }
     }
 
-    private void writeStringToFile(File file, String str) {
+    private void writeStringsToFile(File file, List<String> strings) {
         try (FileWriter fw = new FileWriter(file.getPath())) {
-            fw.write(str);
+            for(String str : strings) {
+                fw.write(str);
+            }
             fw.flush();
         } catch (IOException e) {
             e.printStackTrace() ;
