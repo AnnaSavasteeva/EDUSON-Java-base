@@ -2,6 +2,7 @@ docnum7891abcd0
 docnumABc123456
 contract91abcd0
 contractABcd123
+abc12-4docnum
 abc123456docnum
 abc123docnum456
 123abcdcontract
