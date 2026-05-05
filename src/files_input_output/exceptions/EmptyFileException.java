@@ -7,7 +7,7 @@ package files_input_output.exceptions;
 public class EmptyFileException extends RuntimeException {
 
     public EmptyFileException() {
-        super("Не удалось извлечь данные из файла: возможно, файл пустой");
+        super("Не удалось извлечь данные из файла: возможно, файл пустой или не существует");
     }
 
     @Override
