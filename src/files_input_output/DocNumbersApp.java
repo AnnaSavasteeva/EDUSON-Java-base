@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -21,12 +23,12 @@ import static java.lang.String.format;
 public class DocNumbersApp {
 
     private static final String REPORTS_DIR = "resources/files";
-    private static final String DOC_NUMBERS_REPORT = "valid_doc_nums.txt";
-    private static final String INVALID_DOC_NUMBERS_REPORT = "invalid_doc_nums.txt";
+    private static final String DOC_NUMBERS_REPORT = "valid_numbers";
+    private static final String INVALID_DOC_NUMBERS_REPORT = "invalid_numbers";
+    private static final String EXTENSION = "txt";
 
     public void runApp() {
 //        TODO: обрабатывать csv-файл
-//        TODO: создавать файлы с уникальными именами (см. ИИ)
 
         try (Scanner sc = new Scanner(System.in)) {
             File fileToRead = new File(getPathToFile(sc));
@@ -36,8 +38,8 @@ public class DocNumbersApp {
 
             File directory = new File(REPORTS_DIR);
             if (!directory.exists()) directory.mkdirs();
-            File valid_numbers = createFile(directory, DOC_NUMBERS_REPORT);
-            File invalid_numbers = createFile(directory, INVALID_DOC_NUMBERS_REPORT);
+            File valid_numbers = createFile(directory, getFileName(DOC_NUMBERS_REPORT, EXTENSION));
+            File invalid_numbers = createFile(directory, getFileName(INVALID_DOC_NUMBERS_REPORT, EXTENSION));
 
             String docNumbersString = docNumbersAsChars.stream().map(String::valueOf).collect(Collectors.joining());
             List<String> docNumbersList = Arrays.asList(docNumbersString.split("\n"));
@@ -59,6 +61,11 @@ public class DocNumbersApp {
             writeStringsToFile(invalid_numbers, invalidList);
             writeStringsToFile(valid_numbers, validList);
         }
+    }
+
+    private String getFileName(String name, String extension) {
+        String uniquePostfix = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
+        return format("%s_%s.%s", name, uniquePostfix, extension);
     }
 
     private void writeStringsToFile(File file, List<String> strings) {
