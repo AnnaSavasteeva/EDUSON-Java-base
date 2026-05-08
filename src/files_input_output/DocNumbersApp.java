@@ -23,9 +23,8 @@ import static java.lang.String.format;
 public class DocNumbersApp {
 
     private static final String REPORTS_DIR = "resources/files";
-    private static final String DOC_NUMBERS_REPORT = "valid_numbers";
-    private static final String INVALID_DOC_NUMBERS_REPORT = "invalid_numbers";
-    private static final String EXTENSION = "txt";
+    private static final String DOC_NUMBERS_REPORT = "valid_numbers.txt";
+    private static final String INVALID_DOC_NUMBERS_REPORT = "invalid_numbers.txt";
 
     public void runApp() {
 //        TODO: обрабатывать csv-файл
@@ -38,8 +37,8 @@ public class DocNumbersApp {
 
             File directory = new File(REPORTS_DIR);
             if (!directory.exists()) directory.mkdirs();
-            File valid_numbers = createFile(directory, getFileName(DOC_NUMBERS_REPORT, EXTENSION));
-            File invalid_numbers = createFile(directory, getFileName(INVALID_DOC_NUMBERS_REPORT, EXTENSION));
+            File valid_numbers = createFile(directory, getFileName(DOC_NUMBERS_REPORT));
+            File invalid_numbers = createFile(directory, getFileName(INVALID_DOC_NUMBERS_REPORT));
 
             String docNumbersString = docNumbersAsChars.stream().map(String::valueOf).collect(Collectors.joining());
             List<String> docNumbersList = Arrays.asList(docNumbersString.split("\n"));
@@ -63,9 +62,9 @@ public class DocNumbersApp {
         }
     }
 
-    private String getFileName(String name, String extension) {
+    private String getFileName(String name) {
         String uniquePostfix = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
-        return format("%s_%s.%s", name, uniquePostfix, extension);
+        return format("%s_%s", name, uniquePostfix);
     }
 
     private void writeStringsToFile(File file, List<String> strings) {
