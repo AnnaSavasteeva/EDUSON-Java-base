@@ -1,10 +1,11 @@
-import exceptions.AuthorizationExceptionsApp;
-import exceptions.AvoidFinallyBlockApp;
+import files_input_output.DocNumbersApp;
+import files_input_output.RomeoAndJulietProcess;
 
 public class Main {
 
     public static void main(String[] args) {
-        new AuthorizationExceptionsApp().runApp();
-        new AvoidFinallyBlockApp().runApp();
+
+//        new RomeoAndJulietProcess().runApp();
+        new DocNumbersApp().runApp();
     }
 }
