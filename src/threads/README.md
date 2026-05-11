@@ -6,7 +6,7 @@
 - MyThread
 - MyRunnable
 
-**ClassworkPracticeSimple — для решения следующих задач:**
+### ClassworkPracticeSimple
 
 **Задача 1:**
 - используя класс Thread создать поток Child который выводит числа от 1 до 100;
@@ -18,3 +18,19 @@
 **Задача 2:** c помощью метода join() изменить предыдущий код таким образом, чтобы надпись “Поток main завершает свою работу” всегда была последней.
 
 **Задача 3:** переписать предыдущий код используя интерфейс Runnable.
+
+### ClassworkPracticeSynchronization
+- Создать класс Counter с полем count и методом increase() который увеличивает count на 1.
+- Создать второй класс CounterThread с интерфейсом Runnable, полем Counter и конструктором, который инициализирует поле Counter.
+- Метод run() должен иметь следующую логику:
+
+```java
+@Override
+public void run() {
+    counter.setCount(1);
+    for (int i = 0; i < 4; i++ ) {
+        System.out.println(counter.getCount());
+        counter.increase();
+    }
+}
+```
