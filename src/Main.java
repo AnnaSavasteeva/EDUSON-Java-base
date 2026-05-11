@@ -1,9 +1,9 @@
-import threads.ClassworkPracticeSynchronization;
+import threads.MinMaxArrayElements;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        new ClassworkPracticeSynchronization().runApp();
+        new MinMaxArrayElements().runApp();
     }
 }
