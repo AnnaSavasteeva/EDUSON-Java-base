@@ -1,9 +1,9 @@
-import threads.MinMaxArrayElements;
+import threads.ArraysSorting;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        new MinMaxArrayElements().runApp();
+        new ArraysSorting().runApp();
     }
 }
