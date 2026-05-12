@@ -1,9 +1,9 @@
-import streams.StreamApp;
+import threads.ArraysSorting;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        new StreamApp().runApp();
+        new ArraysSorting().runApp();
     }
 }
