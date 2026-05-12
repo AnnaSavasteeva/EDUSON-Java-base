@@ -1,9 +1,9 @@
-import threads.ClassworkPracticeSynchronization;
+import streams.StreamApp;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        new ClassworkPracticeSynchronization().runApp();
+        new StreamApp().runApp();
     }
 }
